@@ -1,5 +1,9 @@
 package com.example.hetal13.afinal;
 
+/**
+ * Created by Hetal13 on 25-02-2017.
+ */
+
 public class Service_ListPojo {
     private int thumbnail;
     private String catname;
