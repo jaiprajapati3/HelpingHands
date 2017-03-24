@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="17dp"
+    android:paddingBottom="10dp"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+
+    >
+
+<TextView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/tvheading"
+    android:gravity="center"
+    android:text=" Like the Service of Rahul Patel?"
+    android:textSize="19dp"
+    android:textStyle="bold"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvheading"
+        android:id="@+id/tvratingtext"
+        android:text=" Please give rating"
+        android:layout_marginTop="12dp"
+        android:gravity="center"
+        android:textSize="16dp"/>
+    <RatingBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/rating"
+        android:layout_marginTop="12dp"
+        android:layout_centerHorizontal="true"
+        android:stepSize="1"
+        android:layout_below="@+id/tvratingtext"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rating"
+        android:paddingTop="10dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="10dp"
+        android:weightSum="1">
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="37dp"
+        android:id="@+id/notnow"
+        android:text="Not Now"
+
+        android:background="@drawable/shape_notnow"
+        android:layout_weight="0.5"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="37dp"
+            android:id="@+id/rate"
+            android:textColor="#ffffff"
+            android:background="@drawable/shape_dialogbox"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="0.5"
+            android:text="Rate"/>
+    </LinearLayout>
+</RelativeLayout>

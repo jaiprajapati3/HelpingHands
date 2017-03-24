@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="country_textview" type="id">country</item>
+    <item name="city_textview" type="id" />
+    <item name="state_textview" type="id" />
+    <item name="area_textview" type="id" />
+</resources>

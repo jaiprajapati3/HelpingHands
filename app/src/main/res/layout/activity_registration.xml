@@ -1,0 +1,1405 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativelayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_centerInParent="true"
+    android:background="#FFFFFF">
+
+    <!--REgistration Screen for SP-1-->
+    <LinearLayout
+        android:id="@+id/linearlayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:background="@android:drawable/alert_light_frame">
+
+        <TableLayout
+            android:id="@+id/tablelayout1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp">
+
+            <TableRow
+                android:id="@+id/row1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+
+                <TextView
+                    android:id="@+id/txtRegistrationTitle1"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/title_height"
+                    android:layout_weight="1"
+                    android:background="@color/colorPrimary"
+                    android:gravity="center_vertical|center"
+                    android:text="@string/registration_screen_1"
+                    android:textAlignment="center"
+                    android:textColor="@color/TitleTextColor"
+                    android:textStyle="bold" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/row2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <Spinner
+                    android:id="@+id/email_select"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:gravity="left"
+                    android:textColor="@color/WidgetTextColor"
+                    android:textAlignment="center"
+                    style="@style/SpinnerAppTheme"
+                    android:spinnerMode="dropdown"
+                    android:dropDownVerticalOffset="40dp"/>
+
+            </TableRow>
+            <TableRow
+                android:id="@+id/row3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="right">
+
+                        <Button
+                            android:id="@+id/login_next"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:text="@string/login_next"
+                            android:textColor="#fff"
+                            android:background="@drawable/shape_button"
+                            android:elevation="50dp"
+                            android:textStyle="bold" />
+                    </TableRow>
+                </TableLayout>
+            </TableRow>
+        </TableLayout>
+    </LinearLayout>
+    <!--REgistration Screen for SP-2-->
+    <LinearLayout
+        android:id="@+id/linearlayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:visibility="invisible"
+        android:background="@android:drawable/alert_light_frame">
+
+        <TableLayout
+            android:id="@+id/tablelayout2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp">
+
+            <TableRow
+                android:id="@+id/row4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+
+                <TextView
+                    android:id="@+id/txtRegistrationTitle2"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/title_height"
+                    android:layout_weight="1"
+                    android:background="@color/colorPrimary"
+                    android:gravity="center_vertical|center"
+                    android:text="@string/registration_screen_1"
+                    android:textAlignment="center"
+                    android:textColor="@color/TitleTextColor"
+                    android:textStyle="bold" />
+            </TableRow>
+            <TableRow
+                android:id="@+id/row5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <Spinner
+                    android:id="@+id/user_select"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:spinnerMode="dropdown"
+                    style="@style/SpinnerAppTheme"
+                    android:entries="@array/categories"
+                    android:dropDownVerticalOffset="40dp"
+                    android:textColor="@color/TextColor"/>
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/row6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TableLayout
+                    android:id="@+id/tablelayout_inNext1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <TableRow
+                        android:id="@+id/tablelayout_inNext3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="right">
+
+                        <Button
+                            android:id="@+id/user_type_next"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:text="@string/login_next"
+                            android:textColor="#fff"
+                            android:background="@drawable/shape_button"
+                            android:elevation="50dp"
+                            android:textStyle="bold" />
+                    </TableRow>
+                </TableLayout>
+            </TableRow>
+        </TableLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/linearlayout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:visibility="invisible"
+        android:background="@android:drawable/alert_light_frame">
+
+        <TableLayout
+            android:id="@+id/tablelayout3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp">
+
+            <TableRow
+                android:id="@+id/row7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+
+                <TextView
+                    android:id="@+id/txtRegistrationTitle3"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_weight="1"
+                    android:background="@color/colorPrimary"
+                    android:gravity="center_vertical|center"
+                    android:text="@string/registration_screen_1"
+                    android:textAlignment="center"
+                    android:textColor="@color/TitleTextColor"
+                    android:textStyle="bold" />
+            </TableRow>
+
+            <RadioGroup
+                android:id="@+id/sp_group"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|left">
+
+                <RadioButton
+                    android:layout_height="@dimen/radio_height"
+                    android:layout_width="wrap_content"
+                    android:id="@+id/pg"
+                    android:textColor="@color/WidgetTextColor"
+                    android:buttonTint="@color/CheckBoxColor"
+                    android:text="@string/pg"
+                    android:layout_marginTop="10dp"
+                    />
+                <RadioButton
+                    android:layout_height="@dimen/radio_height"
+                    android:layout_width="wrap_content"
+                    android:id="@+id/tiffin"
+                    android:buttonTint="@color/CheckBoxColor"
+                    android:text="@string/tiffin"
+                    android:textColor="@color/WidgetTextColor"
+                    android:layout_marginTop="10dp"
+                    />
+                <RadioButton
+                    android:layout_height="@dimen/radio_height"
+                    android:layout_width="wrap_content"
+                    android:id="@+id/contractor"
+                    android:buttonTint="@color/CheckBoxColor"
+                    android:textColor="@color/WidgetTextColor"
+                    android:text="@string/contractor"
+                    android:layout_marginTop="10dp"
+                    />
+                <RadioButton
+                    android:layout_height="@dimen/radio_height"
+                    android:layout_width="wrap_content"
+                    android:id="@+id/maid"
+                    android:text="@string/maid"
+                    android:buttonTint="@color/CheckBoxColor"
+                    android:textColor="@color/WidgetTextColor"
+                    android:layout_marginTop="10dp"
+                    />
+                <RadioButton
+                    android:layout_height="@dimen/radio_height"
+                    android:layout_width="wrap_content"
+                    android:id="@+id/driver"
+                    android:textColor="@color/WidgetTextColor"
+                    android:buttonTint="@color/CheckBoxColor"
+                    android:text="@string/driver"
+                    android:layout_marginTop="10dp"
+                    />
+                <RadioButton
+                    android:layout_height="@dimen/radio_height"
+                    android:layout_width="wrap_content"
+                    android:id="@+id/security"
+                    android:textColor="@color/WidgetTextColor"
+                    android:buttonTint="@color/CheckBoxColor"
+                    android:text="@string/security"
+                    android:layout_marginTop="10dp"
+                    />
+                <RadioButton
+                    android:layout_height="@dimen/radio_height"
+                    android:textColor="@color/WidgetTextColor"
+                    android:layout_width="wrap_content"
+                    android:id="@+id/mechanic"
+                    android:buttonTint="@color/CheckBoxColor"
+                    android:text="@string/mechanic"
+                    android:layout_marginTop="10dp"
+                    />
+            </RadioGroup>
+
+            <TableRow
+                android:id="@+id/row15"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TableLayout
+                    android:id="@+id/tablelayout_inNext4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <TableRow
+                        android:id="@+id/tablelayout_inNext5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="right">
+
+                        <Button
+                            android:id="@+id/skill_type_next"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:background="@color/colorPrimary"
+                            android:text="@string/login_next"
+                            android:textColor="@color/TitleTextColor"
+                            android:textStyle="bold" />
+                    </TableRow>
+                </TableLayout>
+            </TableRow>
+        </TableLayout>
+    </LinearLayout>
+
+    <!--   Layout of PG Form -->
+    <LinearLayout
+        android:id="@+id/pglayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:visibility="invisible"
+        android:background="@android:drawable/alert_light_frame">
+
+        <TableLayout
+            android:id="@+id/tablelayout7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp">
+
+            <TableRow
+                android:id="@+id/row16"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+
+                <TextView
+                    android:id="@+id/txtRegistrationTitle_pg"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/title_height"
+                    android:layout_weight="1"
+                    android:background="@color/colorPrimary"
+                    android:gravity="center_vertical|center"
+                    android:text="PG Details"
+                    android:textAlignment="center"
+                    android:textColor="@color/TitleTextColor"
+                    android:textStyle="bold" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/row17"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <Spinner
+                    android:id="@+id/no_of_persons"
+                    android:layout_width="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:spinnerMode="dropdown"
+                    android:dropDownVerticalOffset="40dp"
+                    android:entries="@array/no_of_persons"
+                    style="@style/SpinnerAppTheme"
+                    />
+
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/row18"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <CheckBox
+                    android:id="@+id/ac"
+                    android:text="ACRoom"
+                    android:layout_width="wrap_content"
+                    android:layout_marginRight="5px"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    />
+                <EditText
+                    android:id="@+id/cost_acroom"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:inputType="number"
+                    android:hint="@string/cost_acroom"
+                    android:visibility="invisible"
+                    />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/row19"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <CheckBox
+                    android:id="@+id/nonac"
+                    android:text="NonACRoom"
+                    android:layout_width="wrap_content"
+                    android:layout_marginRight="5px"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    />
+                <EditText
+                    android:id="@+id/cost_room"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:inputType="number"
+                    android:hint="@string/cost_room"
+                    android:visibility="invisible"
+                    />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/row20"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TableLayout
+                    android:id="@+id/tablelayout_inNext8"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <TableRow
+                        android:id="@+id/pg_tablelayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="right">
+
+                        <Button
+                            android:id="@+id/pg_next"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:text="@string/contractor_next"
+                            android:textColor="#fff"
+                            android:background="@drawable/shape_button"
+                            android:elevation="50dp"
+                            android:textStyle="bold" />
+                    </TableRow>
+                </TableLayout>
+            </TableRow>
+        </TableLayout>
+    </LinearLayout>
+
+    <!-- Layout of Tiffin Provider-->
+    <LinearLayout
+        android:id="@+id/tiffinlayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:visibility="invisible"
+        android:background="@android:drawable/alert_light_frame">
+
+        <TableLayout
+            android:id="@+id/tablelayout14"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp">
+
+            <TableRow
+                android:id="@+id/row57"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+
+                <TextView
+                    android:id="@+id/txtRegistrationTitle_tiffin"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/title_height"
+                    android:layout_weight="1"
+                    android:background="@color/colorPrimary"
+                    android:gravity="center_vertical|center"
+                    android:text="Tiffin Provider Details"
+                    android:textAlignment="center"
+                    android:textColor="@color/TitleTextColor"
+                    android:textStyle="bold" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/row58"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <CheckBox
+                    android:id="@+id/full"
+                    android:text="Full Tiffin"
+                    android:layout_width="wrap_content"
+                    android:layout_marginRight="5px"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    />
+                <EditText
+                    android:id="@+id/cost_fulltiffin"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:inputType="number"
+                    android:hint="@string/cost_fulltiffin"
+                    android:visibility="invisible"
+                    />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/row59"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <CheckBox
+                    android:id="@+id/half"
+                    android:text="Half Tiffin"
+                    android:layout_width="wrap_content"
+                    android:layout_marginRight="5px"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    />
+                <EditText
+                    android:id="@+id/cost_halftiffin"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:inputType="number"
+                    android:hint="@string/cost_halftiffin"
+                    android:visibility="invisible"
+                    />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/row60"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TableLayout
+                    android:id="@+id/tablelayout_inNext14"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <TableRow
+                        android:id="@+id/tiffin_tablelayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="right">
+
+                        <Button
+                            android:id="@+id/tiffin_next"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:background="@color/colorPrimary"
+                            android:text="@string/tiffin_next"
+                            android:textColor="@color/TitleTextColor"
+                            android:textStyle="bold" />
+                    </TableRow>
+                </TableLayout>
+            </TableRow>
+        </TableLayout>
+    </LinearLayout>
+
+    <!--   Layout of Contractor Form -->
+    <LinearLayout
+        android:id="@+id/contractorlayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:visibility="invisible"
+        android:background="@android:drawable/alert_light_frame">
+
+        <TableLayout
+            android:id="@+id/tablelayout8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp">
+
+            <TableRow
+                android:id="@+id/row21"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+
+                <TextView
+                    android:id="@+id/txtRegistrationTitle_contractor"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/title_height"
+                    android:layout_weight="1"
+                    android:background="@color/colorPrimary"
+                    android:gravity="center_vertical|center"
+                    android:text="Contractor Details"
+                    android:textAlignment="center"
+                    android:textColor="@color/TitleTextColor"
+                    android:textStyle="bold" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/row22"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/workexp_contractor"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:hint="@string/workexp_contractor"
+                    android:inputType="number"
+                    />
+
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/row23"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/cost_contractor"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:inputType="number"
+                    android:hint="@string/cost_contractor"
+                    />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/row24"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TableLayout
+                    android:id="@+id/tablelayout_inNext9"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <TableRow
+                        android:id="@+id/contractor_tablelayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="right">
+
+                        <Button
+                            android:id="@+id/contractor_next"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:textColor="#fff"
+                            android:background="@drawable/shape_button"
+                            android:elevation="50dp"
+                            android:text="@string/contractor_next"
+                            android:textStyle="bold" />
+                    </TableRow>
+                </TableLayout>
+            </TableRow>
+        </TableLayout>
+    </LinearLayout>
+
+    <!--   Layout of Maid Form -->
+    <LinearLayout
+        android:id="@+id/maidlayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:visibility="invisible"
+        android:background="@android:drawable/alert_light_frame">
+
+        <TableLayout
+            android:id="@+id/tablelayout9"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp">
+
+            <TableRow
+                android:id="@+id/row25"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+
+                <TextView
+                    android:id="@+id/txtRegistrationTitle_maid"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/title_height"
+                    android:layout_weight="1"
+                    android:background="@color/colorPrimary"
+                    android:gravity="center_vertical|center"
+                    android:text="Maid Details"
+                    android:textAlignment="center"
+                    android:textColor="@color/TitleTextColor"
+                    android:textStyle="bold" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/row26"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/workexp_maid"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:hint="@string/workexp_maid"
+                    android:inputType="number"
+                    />
+
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/row27"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/cost_maid"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:inputType="number"
+                    android:hint="@string/cost_maid"
+                    />
+            </TableRow>
+
+                <TextView
+                    android:id="@+id/per"
+                    android:layout_width="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:text="per"/>
+
+                <Spinner
+                    android:id="@+id/slot"
+                    android:layout_width="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:spinnerMode="dropdown"
+                    android:dropDownVerticalOffset="40dp"
+                    android:entries="@array/slot"
+                    style="@style/SpinnerAppTheme"
+                    />
+
+            <TableRow
+                android:id="@+id/row28"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TableLayout
+                    android:id="@+id/tablelayout_inNext10"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <TableRow
+                        android:id="@+id/maid_tablelayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="right">
+
+                        <Button
+                            android:id="@+id/maid_next"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:textColor="#fff"
+                            android:background="@drawable/shape_button"
+                            android:elevation="50dp"
+                            android:text="@string/maid_next"
+                            android:textStyle="bold" />
+                    </TableRow>
+                </TableLayout>
+            </TableRow>
+        </TableLayout>
+    </LinearLayout>
+    <!-- Layout of Driver Form -->
+    <LinearLayout
+        android:id="@+id/driverlayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:visibility="invisible"
+        android:background="@android:drawable/alert_light_frame">
+
+        <TableLayout
+            android:id="@+id/tablelayout10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp">
+
+            <TableRow
+                android:id="@+id/row29"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+
+                <TextView
+                    android:id="@+id/txtRegistrationTitle_driver"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/title_height"
+                    android:layout_weight="1"
+                    android:background="@color/colorPrimary"
+                    android:gravity="center_vertical|center"
+                    android:text="Driver Details"
+                    android:textAlignment="center"
+                    android:textColor="@color/TitleTextColor"
+                    android:textStyle="bold" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/row30"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/workexp_driver"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:hint="@string/workexp_driver"
+                    android:inputType="number"
+                    />
+
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/row31"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/cost_driver"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:inputType="number"
+                    android:hint="@string/cost_driver"
+                    />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/row32"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TableLayout
+                    android:id="@+id/tablelayout_inNext11"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <TableRow
+                        android:id="@+id/driver_tablelayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="right">
+
+                        <Button
+                            android:id="@+id/driver_next"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:text="@string/driver_next"
+                            android:textColor="#fff"
+                            android:background="@drawable/shape_button"
+                            android:elevation="50dp"
+                            android:textStyle="bold" />
+                    </TableRow>
+                </TableLayout>
+            </TableRow>
+        </TableLayout>
+    </LinearLayout>
+
+    <!--   Layout of Security Form -->
+    <LinearLayout
+        android:id="@+id/securitylayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:visibility="invisible"
+        android:background="@android:drawable/alert_light_frame">
+
+        <TableLayout
+            android:id="@+id/tablelayout11"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp">
+
+            <TableRow
+                android:id="@+id/row33"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+
+                <TextView
+                    android:id="@+id/txtRegistrationTitle_security"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/title_height"
+                    android:layout_weight="1"
+                    android:background="@color/colorPrimary"
+                    android:gravity="center_vertical|center"
+                    android:text="Security Details"
+                    android:textAlignment="center"
+                    android:textColor="@color/TitleTextColor"
+                    android:textStyle="bold" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/row34"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/workexp_security"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:hint="@string/workexp_security"
+                    android:inputType="number"
+                    />
+
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/row56"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <Spinner
+                    android:id="@+id/shift"
+                    android:layout_width="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:spinnerMode="dropdown"
+                    android:dropDownVerticalOffset="40dp"
+                    style="@style/SpinnerAppTheme"
+                    android:entries="@array/shift"
+                    />
+
+            </TableRow>
+            <TableRow
+                android:id="@+id/row35"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/cost_security"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:inputType="number"
+                    android:hint="@string/cost_security"
+                    />
+            </TableRow>
+
+
+            <TableRow
+                android:id="@+id/row36"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TableLayout
+                    android:id="@+id/tablelayout_inNext12"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <TableRow
+                        android:id="@+id/security_tablelayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="right">
+
+                        <Button
+                            android:id="@+id/security_next"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:text="@string/security_next"
+                            android:textColor="#fff"
+                            android:elevation="50dp"
+                            android:background="@drawable/shape_button"
+                            android:textStyle="bold" />
+                    </TableRow>
+                </TableLayout>
+            </TableRow>
+        </TableLayout>
+    </LinearLayout>
+
+    <!--   Layout of Mechanic Form -->
+    <LinearLayout
+        android:id="@+id/mechaniclayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:visibility="invisible"
+        android:background="@android:drawable/alert_light_frame">
+
+        <TableLayout
+            android:id="@+id/tablelayout12"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp">
+
+            <TableRow
+                android:id="@+id/row37"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+
+                <TextView
+                    android:id="@+id/txtRegistrationTitle_mechanic"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/title_height"
+                    android:layout_weight="1"
+                    android:background="@color/colorPrimary"
+                    android:gravity="center_vertical|center"
+                    android:text="Mechanic Details"
+                    android:textAlignment="center"
+                    android:textColor="@color/TitleTextColor"
+                    android:textStyle="bold" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/row38"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/workexp_mechanic"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:hint="@string/workexp_mechanic"
+                    android:inputType="number"
+                    />
+
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/row39"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/cost_mechanic"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:inputType="number"
+                    android:hint="@string/cost_mechanic"
+                    />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/row40"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TableLayout
+                    android:id="@+id/tablelayout_inNext13"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <TableRow
+                        android:id="@+id/mechanic_tablelayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="right">
+
+                        <Button
+                            android:id="@+id/mechanic_next"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:text="@string/mechanic_next"
+                            android:elevation="50dp"
+                            android:textColor="#fff"
+                            android:background="@drawable/shape_button"
+                            android:textStyle="bold" />
+                    </TableRow>
+                </TableLayout>
+            </TableRow>
+        </TableLayout>
+    </LinearLayout>
+
+
+    <!--Registration Screen for SP-4-->
+    <LinearLayout
+        android:id="@+id/linearlayout4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:visibility="invisible"
+        android:background="@android:drawable/alert_light_frame">
+
+        <TableLayout
+            android:id="@+id/tablelayout4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp">
+
+            <TableRow
+                android:id="@+id/row41"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+
+                <TextView
+                    android:id="@+id/txtRegistrationTitle4"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/title_height"
+                    android:layout_weight="1"
+                    android:background="@color/colorPrimary"
+                    android:gravity="center_vertical|center"
+                    android:text="@string/registration_screen_1"
+                    android:textAlignment="center"
+                    android:textColor="@color/TitleTextColor"
+                    android:textStyle="bold" />
+            </TableRow>
+            <TableRow
+                android:id="@+id/row42"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <EditText
+                    android:id="@+id/fname_id"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:hint="@string/fname"
+                    android:textColor="@color/TextColor"
+                    android:textColorHint="@color/HintTextColor"
+                    android:inputType="text"
+                    />
+            </TableRow>
+            <TableRow
+                android:id="@+id/row43"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <EditText
+                    android:id="@+id/lname_id"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:hint="@string/lname"
+                    android:textColor="@color/TextColor"
+                    android:textColorHint="@color/HintTextColor"
+                    android:inputType="text"
+                    />
+            </TableRow>
+            <TableRow
+                android:id="@+id/row44"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TableLayout
+                    android:id="@+id/tablelayout_inNext6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <TableRow
+                        android:id="@+id/tablelayout_inNext7"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="right">
+
+                        <Button
+                            android:id="@+id/name_next"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:text="@string/login_next"
+                            android:textColor="#fff"
+                            android:background="@drawable/shape_button"
+                            android:elevation="50dp"
+                            android:textStyle="bold" />
+                    </TableRow>
+                </TableLayout>
+            </TableRow>
+        </TableLayout>
+    </LinearLayout>
+    <!--Registration Screen for SP-5-->
+
+
+    <LinearLayout
+        android:id="@+id/linearlayout5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:visibility="invisible"
+        android:background="@android:drawable/alert_light_frame">
+        <ProgressBar
+            android:id="@+id/loadlist"
+            style="@style/Widget.AppCompat.ProgressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            android:layout_centerInParent="true"
+            android:theme="@style/CircularProgress"
+            android:layout_gravity="center"/>
+        <TableLayout
+            android:id="@+id/tablelayout5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp">
+
+            <TableRow
+                android:id="@+id/row45"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+
+                <TextView
+                    android:id="@+id/txtRegistrationTitle5"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/title_height"
+                    android:layout_weight="1"
+                    android:background="@color/colorPrimary"
+                    android:gravity="center_vertical|center"
+                    android:text="@string/registration_screen_1"
+                    android:textAlignment="center"
+                    android:textColor="@color/TitleTextColor"
+                    android:textStyle="bold" />
+            </TableRow>
+            <TableRow
+                android:id="@+id/row46"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <Spinner
+                    android:id="@+id/country"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:spinnerMode="dropdown"
+                    android:dropDownVerticalOffset="40dp"
+                    android:textAlignment="center"
+                    style="@style/SpinnerAppTheme"
+                    android:textColor="@color/WidgetTextColor"
+                    />
+            </TableRow>
+            <TableRow
+                android:id="@+id/row47"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <Spinner
+                    android:id="@+id/state"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    style="@style/SpinnerAppTheme"
+                    android:spinnerMode="dropdown"
+                    android:dropDownVerticalOffset="40dp"
+                    android:textColor="@color/WidgetTextColor"
+                    android:textAlignment="center" />
+
+            </TableRow>
+            <TableRow
+                android:id="@+id/row48"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <Spinner
+                    android:id="@+id/city"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/WidgetTextColor"
+                    style="@style/SpinnerAppTheme"
+                    android:layout_weight="1"
+                    android:spinnerMode="dropdown"
+                    android:dropDownVerticalOffset="40dp"
+                    android:textAlignment="center" />
+
+            </TableRow>
+            <TableRow
+                android:id="@+id/row49"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <Spinner
+                    android:id="@+id/area"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:spinnerMode="dropdown"
+                    android:dropDownVerticalOffset="40dp"
+                    android:textColor="@color/WidgetTextColor"
+                    style="@style/SpinnerAppTheme"
+                    android:textAlignment="center" />
+
+            </TableRow>
+            <TableRow
+                android:id="@+id/row50"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TableLayout
+                    android:id="@+id/tablelayout_inNext2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+
+                    <TableRow
+                        android:id="@+id/tablelayout_inNext"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="right">
+
+                        <Button
+                            android:id="@+id/area_next"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:text="@string/login_next"
+                            android:textColor="#fff"
+                            android:background="@drawable/shape_button"
+                            android:textStyle="bold" />
+                    </TableRow>
+                </TableLayout>
+            </TableRow>
+        </TableLayout>
+    </LinearLayout>
+    <!--Registration Screen for SP-6-->
+    <LinearLayout
+        android:id="@+id/linearlayout6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:visibility="invisible"
+        android:background="@android:drawable/alert_light_frame">
+
+        <TableLayout
+            android:id="@+id/tablelayout6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp">
+
+            <TableRow
+                android:id="@+id/row51"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
+
+                <TextView
+                    android:id="@+id/txtRegistrationTitle6"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/title_height"
+                    android:layout_weight="1"
+                    android:background="@color/colorPrimary"
+                    android:gravity="center_vertical|center"
+                    android:text="@string/registration_screen_1"
+                    android:textAlignment="center"
+                    android:textColor="@color/TitleTextColor"
+                    android:textStyle="bold" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/row52"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/phone_no"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:hint="@string/phone_no"
+                    android:textColorHint="@color/HintTextColor"
+                    android:textColor="@color/TextColor"
+                    android:inputType="number"
+                    />
+
+            </TableRow>
+            <TableRow
+                android:id="@+id/row53"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right">
+
+                <Button
+                    android:id="@+id/verify_otp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/verify_otp"
+                    android:textColor="#fff"
+                    android:background="@drawable/shape_button"
+                    android:textStyle="bold" />
+            </TableRow>
+
+        </TableLayout>
+    </LinearLayout>
+
+</RelativeLayout>

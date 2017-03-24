@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+<group android:checkableBehavior="single">
+    <item
+        android:id="@+id/Edit"
+        android:title="Profile"
+        android:icon="@drawable/edit"
+        ></item>
+    <item
+        android:id="@+id/service"
+        android:title="Services"
+        android:icon="@drawable/customerservice"
+        >
+    </item>
+    <item
+        android:id="@+id/history"
+        android:title="History"
+        android:icon="@drawable/history_1"
+        >
+    </item>
+
+   <item
+    android:id="@+id/rating"
+    android:title="Rating"
+    android:icon="@drawable/rating">
+    </item>
+    <item
+        android:id="@+id/offer"
+        android:title="Offer"
+        android:icon="@drawable/offers"
+        ></item>
+
+    <item
+        android:id="@+id/feedback"
+        android:title="Feedback"
+        android:icon="@drawable/feedback"
+        >
+        </item>
+    <item
+        android:id="@+id/SP_profile"
+        android:title="Profile"
+        android:icon="@drawable/edit"
+        ></item>
+
+
+    <item
+        android:id="@+id/SP_history"
+        android:title="History"
+        android:icon="@drawable/history_1"
+        >
+    </item>
+
+    <item
+        android:id="@+id/SP_rating"
+        android:title="Rating"
+        android:icon="@drawable/rating">
+    </item>
+    <item
+        android:id="@+id/SP_offer"
+        android:title="Offer"
+        android:icon="@drawable/offers"
+        ></item>
+
+    <item
+        android:id="@+id/SP_feedback"
+        android:title="Feedback"
+        android:icon="@drawable/feedback"
+        >
+    </item>
+    <item
+        android:id="@+id/SP_tiffinMenu"
+        android:title="Today's Menu"
+        android:icon="@drawable/feedback"
+        >
+    </item>
+    </group>
+
+
+
+</menu>

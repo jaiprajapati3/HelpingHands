@@ -1,0 +1,40 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+    <color name="TitleTextColor">#FFFFFF</color>
+    <color name="WidgetTextColor">#000000</color>
+    <color name="HintTextColor">#d3d3d3</color>
+    <color name="background_color">#FFFFFF</color>
+    <color name="CheckBoxColor">#000000</color>
+    <color name="TextColor">#000000</color>
+    <style name="RatingBar" parent="Theme.AppCompat">
+        <item name="colorControlNormal">@color/colorPrimary</item>
+        <item name="colorControlActivated">@color/colorPrimary</item>
+    </style>
+    - <style name="CircularProgress" parent="Theme.AppCompat.Light">
+    <item name="colorAccent">@color/ProgressBar</item>
+</style>
+    <style name="ButtonAppTheme" parent="android:Widget.Button">
+        <item name="android:background">@drawable/apptheme_btn_default_holo_light</item>
+        <item name="android:minHeight">56dip</item>
+
+        <item name="android:textColor">#fff</item>
+    </style>
+    <style name="SpinnerAppTheme" parent="android:Widget.Spinner">
+        <item name="android:background">@drawable/apptheme_spinner_background_holo_light</item>
+        <item name="android:dropDownSelector">@drawable/apptheme_list_selector_holo_light</item>
+    </style>
+    <style name="SplashProgress" parent="Theme.AppCompat.Light">
+        <item name="colorAccent">@color/ProgressSplash</item>
+    </style>
+    <style name="NavDrawer">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_marginRight">@dimen/nav_drawer_margin_offset</item>
+    </style>
+</resources>

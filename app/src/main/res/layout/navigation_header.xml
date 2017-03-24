@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="190dp"
+    android:id="@+id/navigation_header_container"
+    android:orientation="vertical"
+    android:background="@drawable/pattern">
+<TextView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="130dp"
+  android:layout_marginLeft="10dp"
+    android:id="@+id/username_nav"
+    android:text="Meghna Vaidya"
+    android:textSize="18dp"
+    android:textColor="@color/textcolor"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/email_nav"
+        android:layout_marginLeft="10dp"
+        android:textSize="18dp"
+        android:text="vaidyameghna26@gmail.com"
+        android:textColor="@color/textcolor"/>
+</LinearLayout>

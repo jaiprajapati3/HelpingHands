@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_recycle__cat__details"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.hetal13.afinal.Recycle_Cat_Details">
+      <include
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+                layout="@layout/toolbar"
+            android:id="@+id/toolbar_rec">
+                </include>
+        <ProgressBar
+            android:id="@+id/progressbar_loadlist"
+            style="@style/Widget.AppCompat.ProgressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:theme="@style/CircularProgress" />
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/recycle"
+            android:paddingTop="0dp"
+            android:paddingLeft="0dp"
+            android:paddingRight="0dp"
+            android:layout_below="@+id/toolbar_rec">
+        </android.support.v7.widget.RecyclerView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/progressbar_loadlist"
+        android:gravity="center">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="RETRY"
+            android:id="@+id/bt_retry"
+            android:visibility="gone"/>
+
+    </LinearLayout>
+</RelativeLayout>

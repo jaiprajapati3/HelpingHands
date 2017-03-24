@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.hetal13.afinal">
+
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <application
+        android:name=".MyApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        -
+        <activity android:name=".Splash_Screen"
+            android:screenOrientation="portrait">
+            -
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Form" android:screenOrientation="portrait"/>
+        <activity android:name=".WelcomeActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Registration"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Navigation"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Edit"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".service"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".feedback"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".history"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".offer"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".rating"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Recycle_Cat_Details"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Service_Details"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Service_rating"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".Service_feedback"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".Service_history"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".Service_offer"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".Service_profile"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".Home"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".TiffinMenuActivity"
+            android:screenOrientation="portrait"></activity>
+    </application>
+
+</manifest>
