@@ -36,7 +36,7 @@ public class Navigation extends AppCompatActivity {
     TextView email;
     String country_data,user_name;
     String state_data;
-    String city_data,email_data,Area_data;
+    String city_data,email_data,Area_data,user_type;
     ArrayList<String> checkboxlist;
     View coordinator;
     @Override
@@ -61,6 +61,7 @@ public class Navigation extends AppCompatActivity {
 
         fname = MyApplication.getInstance().getPrefManager().getfirstname();
         lname = MyApplication.getInstance().getPrefManager().getlastname();
+        user_type  =MyApplication.getInstance().getPrefManager().getcheckbox();
 
 //        Toast.makeText(this, "fname--" + fname,
 //                Toast.LENGTH_SHORT).show();
@@ -302,7 +303,13 @@ for(String str: checkboxlist){
                         drawerLayout.closeDrawers();
                         break;
                     case R.id.SP_profile:
+//                        Intent edit1 = new Intent(getApplicationContext(), Service_profile.class);
+//                        startActivity(edit1);
+//                        drawerLayout.closeDrawers();
+//                        break;
                         Intent edit1 = new Intent(getApplicationContext(), Service_profile.class);
+                        Log.v("SP value:",user_type);
+                        edit1.putExtra("SP",user_type);
                         startActivity(edit1);
                         drawerLayout.closeDrawers();
                         break;
