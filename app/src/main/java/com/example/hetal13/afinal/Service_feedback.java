@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -22,6 +23,8 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import static android.R.attr.id;
+
 public class Service_feedback extends Navigation {
     public ArrayList<ServicePojo_comment> arrayList = new ArrayList<ServicePojo_comment>();
     RecyclerView recyclerView;
@@ -30,6 +33,7 @@ public class Service_feedback extends Navigation {
     String url_commentshow;
     RecyclerView.Adapter adapter;
     RecyclerView.LayoutManager layoutManager;
+    ProgressBar progressBar;
     private int area_id;
 
     @Override
@@ -43,7 +47,7 @@ public class Service_feedback extends Navigation {
         getSupportActionBar().setTitle("Service feedback");
         //hetal
         recyclerView = (RecyclerView) findViewById(R.id.recycle);
-
+        progressBar = (ProgressBar) findViewById(R.id.progressbar_loadlist);
        // int sp_id = 4;
         String Email="reenajani@gmail.com";
 //get id from shared Preference
@@ -55,6 +59,7 @@ public class Service_feedback extends Navigation {
             @Override
             public void onResponse(JSONArray response) {
                 Log.e("TAG","123");
+                progressBar.setVisibility(View.GONE);
                 for (int i = 0; i < response.length(); i++) {
                     try {
                         JSONObject object = response.getJSONObject(i);

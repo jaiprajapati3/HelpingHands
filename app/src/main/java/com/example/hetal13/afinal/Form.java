@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.graphics.Point;
 import android.media.Image;
@@ -12,9 +13,11 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutCompat;
 import android.support.v7.widget.Toolbar;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Display;
 import android.view.Gravity;
@@ -36,6 +39,7 @@ import android.widget.ProgressBar;
 import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 //import com.amulyakhare.textdrawable.TextDrawable;
 import com.amulyakhare.textdrawable.TextDrawable;
@@ -124,7 +128,42 @@ public class Form extends AppCompatActivity {
 
                     Log.e("java123", letter);
                     TextDrawable drawable = TextDrawable.builder()
-                            .buildRound(String.valueOf(letter).toUpperCase(), Color.parseColor("#701b46"));
+                           .buildRound(String.valueOf(letter).toUpperCase(), Color.parseColor("#701b46"));
+                    DisplayMetrics displayMetrics=new DisplayMetrics();
+                    android.view.ViewGroup.LayoutParams layoutParams=image.getLayoutParams();
+                    getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+                    Display display = getWindowManager().getDefaultDisplay();
+                    Point size = new Point();
+                    display.getSize(size);
+                    int width = size.x;
+                    int height = size.y;
+                    /*int height=displayMetrics.heightPixels;
+                    int width=displayMetrics.widthPixels;*/
+                    int screenSize = getResources().getConfiguration().screenLayout &
+                            Configuration.SCREENLAYOUT_SIZE_MASK;
+
+                    String toastMsg;
+                    switch(screenSize) {
+                        case Configuration.SCREENLAYOUT_SIZE_LARGE:
+                            layoutParams.width = width-450;
+                            layoutParams.height = height-970;
+                            image.setLayoutParams(layoutParams);
+                            toastMsg = "Large screen";
+                            break;
+                        case Configuration.SCREENLAYOUT_SIZE_NORMAL:
+                            layoutParams.width = width-470;
+                            layoutParams.height = height-1030;
+                            image.setLayoutParams(layoutParams);
+
+                            toastMsg = "Normal screen";
+                            break;
+                        case Configuration.SCREENLAYOUT_SIZE_SMALL:
+                            toastMsg = "Small screen";
+                            break;
+                        default:
+                            toastMsg = "Screen size is neither large, normal or small";
+                    }
+                    Toast.makeText(getBaseContext(), toastMsg, Toast.LENGTH_LONG).show();
                     image.setImageDrawable(drawable);
                 } catch (JSONException e) {
                     e.printStackTrace();
