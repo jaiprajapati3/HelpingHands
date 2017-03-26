@@ -120,7 +120,7 @@ public class HistoryAdapter_SP extends RecyclerView.Adapter<HistoryAdapter_SP.Co
             HistoryPojo contact = this.contacts.get(position);
             Log.v("here","ContactAdapter");
             Intent callIntent = new Intent(Intent.ACTION_DIAL);
-            callIntent.setData(Uri.parse("tel:"+Uri.encode("9879815099".trim())));
+            callIntent.setData(Uri.parse("tel:"+Uri.encode("7041764049".trim())));
             callIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             v.getContext().startActivity(callIntent);
         }
