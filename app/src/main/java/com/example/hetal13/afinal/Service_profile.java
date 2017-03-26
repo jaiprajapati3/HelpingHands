@@ -22,11 +22,12 @@ public class Service_profile extends Navigation implements View.OnClickListener 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+    //    setContentView(R.layout.activity_service_profile);
         LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         //inflate your activity layout here!
         View contentView = inflater.inflate(R.layout.activity_service_profile, null, false);
-        drawerLayout.addView(contentView, 0);
+       drawerLayout.addView(contentView, 0);
         getSupportActionBar().setTitle("Service profile");
 
         Intent i = getIntent();
@@ -34,13 +35,13 @@ public class Service_profile extends Navigation implements View.OnClickListener 
         user_type = (String) bundle.get("SP");
         Log.v("Selected SP:", user_type);
         //All layouts hide show over here
-        pglayout = (LinearLayout) findViewById(R.id.pglayout);
-        tiffinlayout = (LinearLayout) findViewById(R.id.tiffinlayout);
-        driverlayout = (LinearLayout) findViewById(R.id.driverlayout);
-        contractorlayout = (LinearLayout) findViewById(R.id.contractorlayout);
-        mechaniclayout = (LinearLayout) findViewById(R.id.mechaniclayout);
-        securitylayout = (LinearLayout) findViewById(R.id.securitylayout);
-        maidlayout = (LinearLayout) findViewById(R.id.maidlayout);
+        pglayout = (LinearLayout) findViewById(R.id.sp_profile_pglayout);
+        tiffinlayout = (LinearLayout) findViewById(R.id.sp_profile_tiffinlayout);
+        driverlayout = (LinearLayout) findViewById(R.id.sp_profile_driverlayout);
+        contractorlayout = (LinearLayout) findViewById(R.id.sp_profile_contractorlayout);
+        mechaniclayout = (LinearLayout) findViewById(R.id.sp_profile_mechaniclayout);
+        securitylayout = (LinearLayout) findViewById(R.id.sp_profile_securitylayout);
+        maidlayout = (LinearLayout) findViewById(R.id.sp_profile_maidlayout);
 
         maidedit = (Button) findViewById(R.id.maidedit);
         pgedit = (Button) findViewById(R.id.pgedit);
@@ -52,15 +53,6 @@ public class Service_profile extends Navigation implements View.OnClickListener 
         save = (Button) findViewById(R.id.save);
         personaledit = (Button) findViewById(R.id.personaledit);
 
-        pgedit.setOnClickListener(this);
-        securityedit.setOnClickListener(this);
-        driveredit.setOnClickListener(this);
-        tiffinedit.setOnClickListener(this);
-        contractoredit.setOnClickListener(this);
-        maidedit.setOnClickListener(this);
-        mechanicedit.setOnClickListener(this);
-        save.setOnClickListener(this);
-        personaledit.setOnClickListener(this);
 
         edname = (EditText) findViewById(R.id.edname);
         edno = (EditText) findViewById(R.id.edno);
@@ -212,7 +204,6 @@ public class Service_profile extends Navigation implements View.OnClickListener 
         personaledit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.v("edit button clicked", "it worked");
                 edno.setEnabled(true);
                 edno.setFocusable(true);
             }

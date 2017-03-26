@@ -21,9 +21,18 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.amulyakhare.textdrawable.TextDrawable;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.bumptech.glide.Glide;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 /**
  * Created by Hetal13 on 22-12-2016.
@@ -75,7 +84,7 @@ public class ServiceAdapter extends RecyclerView.Adapter<ServiceAdapter.ContactV
 int drawable1=Integer.parseInt(drawable.toString());
         holder.thumbnail.setImageResource(drawable1);
 */
-     Glide.with(context).load(sp_detail2.getThumbnail()).into(holder.thumbnail);
+        Glide.with(context).load(sp_detail2.getThumbnail()).into(holder.thumbnail);
    /*    holder.comment.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
@@ -102,8 +111,8 @@ int drawable1=Integer.parseInt(drawable.toString());
     }
     public static class ContactView extends RecyclerView.ViewHolder implements View.OnClickListener{
         TextView TitleName,id,desc;
-      /*  ImageButton btncall ,comment;
-        RatingBar rating;*/
+        /*  ImageButton btncall ,comment;
+          RatingBar rating;*/
         ImageView thumbnail;
         ArrayList<ServicePojo> sp_detail = new ArrayList<ServicePojo>();
         Context context;
@@ -125,18 +134,69 @@ int drawable1=Integer.parseInt(drawable.toString());
         public void onClick(View v) {
             int position=getAdapterPosition();
 
-            ServicePojo contact = this.sp_detail.get(position);
+            final ServicePojo contact = this.sp_detail.get(position);
             Log.e("TAG","DFdf");
-          //  Intent intent = new Intent(this.context,Service_Details.class);
-            Intent intent=new Intent(this.context,Form.class);
-            intent.putExtra("desc",contact.getDesc());
-            intent.putExtra("sp_id",contact.getId());
-       //     intent.putExtra("thumbnail", String.valueOf(contact.getThumbnail()));
+            Log.e("TAG","Demo");
+            //  Intent intent = new Intent(this.context,Service_Details.class);
+            String sp_id=contact.getId();
+            Calendar c = Calendar.getInstance();
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+            String timing = df.format(c.getTime());
+            final String[] name = new String[1];
+            final String[] email = new String[1];
+            final String[] phone = new String[1];
+            final String[] type = new String[1];
+            final String[] desc = new String[1];
+            final  double[] rating=new  double[1];
+            final JSONObject[] obj = new JSONObject[1];
+            String url_profile=UrlString.url_string+"/SpProfile.php?sp_id="+sp_id+"&timing="+timing;
+            Log.e("url",url_profile);
+            JsonObjectRequest jsonObjectRequest=new JsonObjectRequest(Request.Method.GET, url_profile, null, new Response.Listener<JSONObject>() {
+                @Override
+                public void onResponse(JSONObject response) {
+                    Log.e("Error", String.valueOf(response));
+                    try {
+                        rating[0] = response.getDouble("rating");
+                        obj[0] =response;
+                        Log.e("Json#", String.valueOf(obj[0]));
+                        Intent intent=new Intent(context,Form.class);
+                       // intent.putExtra("desc",contact.getDesc());
+                        intent.putExtra("sp_id",contact.getId());
+                        intent.putExtra("JsonObj", String.valueOf(obj[0]));
+                        Log.e("Json", String.valueOf(obj[0]));
+                        ((Activity) context).startActivityForResult(intent, 2);
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                        Log.v("Error",e.getMessage());
+                    }
 
 
-        ((Activity) context).startActivityForResult(intent, 2);
+
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Log.v("Error",error.getMessage());
+                }
+            });
+            MySingleton.getInstance(context).addToRequestque(jsonObjectRequest);
+
+         //   MySingleton.getInstance(context).addToRequestque(jsonObjectRequest);
+            Log.e("Error#","After");
+//            Intent intent=new Intent(this.context,Form.class);
+//            intent.putExtra("desc",contact.getDesc());
+//            intent.putExtra("sp_id",contact.getId());
+//            Log.e("Json", String.valueOf(obj[0]));
+         //   Log.v("Js",name[0]);
+//            intent.putExtra("JsonObj", String.valueOf(obj[0]));
+
+            //     intent.putExtra("thumbnail", String.valueOf(contact.getThumbnail()));
+
+
+//           ((Activity) context).startActivityForResult(intent, 2);
         }
 
-        }
     }
+}
 

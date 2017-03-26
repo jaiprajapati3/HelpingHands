@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.hetal13.afinal.Form">
+    tools:context="com.example.hetal13.afinal.Form"
+    android:background="#FFFFFF">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -83,7 +84,7 @@
                 android:background="#000000"></View>
 
 
-            <TextView
+           <!-- <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
@@ -91,7 +92,16 @@
                 android:id="@+id/Sp_Desc"
                 android:textSize="23dp"
                 android:paddingLeft="16dp"
-                android:textColor="#000000"/>
+                android:textColor="#000000"/>-->
+            <android.support.v7.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/recycleForm"
+                android:paddingTop="0dp"
+                android:paddingLeft="0dp"
+                android:paddingRight="0dp"
+                android:layout_below="@+id/toolbar_rec">
+            </android.support.v7.widget.RecyclerView>
 
 
         </LinearLayout>

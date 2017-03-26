@@ -8,15 +8,23 @@ import android.os.Handler;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 
 import com.amulyakhare.textdrawable.TextDrawable;
 import com.amulyakhare.textdrawable.util.ColorGenerator;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 public class Service_history extends Navigation {
     RecyclerView recyclerView;
@@ -28,7 +36,7 @@ public class Service_history extends Navigation {
     String name,email,mobile;
     Handler handler = new Handler();
     ArrayList<HistoryPojo> arrayList = new ArrayList<HistoryPojo>();
-
+    ColorGenerator generator = ColorGenerator.MATERIAL;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,21 +51,62 @@ public class Service_history extends Navigation {
         recyclerView=(RecyclerView) findViewById(R.id.recycle);
         name="Hetal Shah";
         email="hetalshah027@gmail.com";
-        mobile="8487046553";
+        mobile="8487046558";
         //Random rnd = new Random();
        // int color = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
-        TextDrawable drawable = TextDrawable.builder()
-                .buildRound("H", Color.parseColor("#701b46"));
+//        final TextDrawable drawable = TextDrawable.builder()
+//                .buildRound("A", Color.parseColor("#701b46"));
         int i;
-        for (i=0;i<=50;i++) {
-            HistoryPojo historyPojo = new HistoryPojo(drawable, name, email, mobile);
-            arrayList.add(historyPojo);
-        }
-        recyclerView.setHasFixedSize(true);
-        layoutManager = new LinearLayoutManager(Service_history.this);
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(adapter);
+//        for (i=0;i<=50;i++) {
+//            HistoryPojo historyPojo = new HistoryPojo(drawable, name, email, mobile);
+//            arrayList.add(historyPojo);
+//        }
+        //String Email=MyApplication.getInstance().getPrefManager().getemail();
+        String Email="reenajani@gmail.com";
 
+        String url_history=UrlString.url_string+"/history.php?email="+Email;
+        Log.v("TAG1",url_history);
+        JsonArrayRequest jsonArrayRequest=new JsonArrayRequest(Request.Method.GET, url_history, null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                Log.v("TAG1234",response.toString());
+                for(int i=0;i<response.length();i++){
+                    try {
+
+                        JSONObject jsonObject=response.getJSONObject(i);
+                        String name=jsonObject.getString("name");
+                        //String name="Bhoomi";
+                        String letter = String.valueOf(name.charAt(0)).toUpperCase();
+                        String email=jsonObject.getString("email");
+                        String mobile=jsonObject.getString("phone");
+
+//                        TextDrawable drawable1=TextDrawable.builder().buildRound(String.valueOf(name.toUpperCase().charAt(0)),Color.parseColor("#701b46"));
+                  final   TextDrawable drawable1 = TextDrawable.builder()
+                                .buildRound(letter, generator.getRandomColor());
+
+                        HistoryPojo historyPojo=new HistoryPojo(drawable1,name,email,mobile);
+                        arrayList.add(historyPojo);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+                recyclerView.setHasFixedSize(true);
+                layoutManager = new LinearLayoutManager(Service_history.this);
+                recyclerView.setLayoutManager(layoutManager);
+                recyclerView.setAdapter(adapter);
+                Log.v("TAG123", String.valueOf(adapter.getItemCount()));
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.v("TAG12",error.getMessage());
+            }
+        });
+        Log.v("TAG12",adapter.toString());
+        MySingleton.getInstance(this).addToRequestque(jsonArrayRequest);
+
+        Log.v("TAG12", String.valueOf(adapter.getItemCount()));
 
     }
     public void onBackPressed()

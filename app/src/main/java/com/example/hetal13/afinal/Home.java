@@ -49,8 +49,9 @@ public class Home extends Navigation {
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.activity_home);
         LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
+        VolleyResponse();
         //inflate your activity layout here!
+
         View contentView = inflater.inflate(R.layout.activity_home, null, false);
         drawerLayout.addView(contentView, 0);
         getSupportActionBar().setTitle("Helping Hands");
@@ -88,24 +89,14 @@ public class Home extends Navigation {
         adapter = new Service_CatAdapter(this, catlist);
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 3);
         recyclerView.setLayoutManager(mLayoutManager);
-        recyclerView.addItemDecoration(new Home.GridSpacingItemDecoration(2, dpToPx(2), true));
+        recyclerView.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(2), true));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
         prepareAlbums();
     }
 
-    private void prepareAlbums() {
-
-        final int[] covers = new int[]{
-                R.drawable.pg11,
-                R.drawable.tiffin11,
-                R.drawable.maid11,
-                R.drawable.contractor11,
-                R.drawable.mechanic,
-                R.drawable.s1,
-                R.drawable.driver};
+    private void VolleyResponse() {
         String url_piechart=UrlString.url_string+"/PieChart.php?area_id=1";
-
         JsonArrayRequest jsonArrayRequest=new JsonArrayRequest(Request.Method.GET, url_piechart, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
@@ -117,6 +108,7 @@ public class Home extends Navigation {
                         int ans = response.getInt(++i);
                         Log.v("javaAns", String.valueOf(ans));
                         arr[--j] = ans;
+
                         //  entries.add(new BarEntry(5,0));
                         //   entries.add(new BarEntry(arr[j],j));
                     } catch (JSONException e) {
@@ -126,50 +118,68 @@ public class Home extends Navigation {
 
 
                 }
-                Service_ListPojo a = new Service_ListPojo(covers[0],"P.G.",1,arr[0]);
-                catlist.add(a);
-
-                a = new Service_ListPojo(covers[1],"Tiffin",2,arr[1]);
-                catlist.add(a);
-
-                a = new Service_ListPojo(covers[2],"Maid",3,arr[2]);
-                catlist.add(a);
-
-                a = new Service_ListPojo(covers[3],"Contractor",4,arr[3]);
-                catlist.add(a);
-
-                a = new Service_ListPojo(covers[4],"Mechanic",5,arr[4]);
-
-                catlist.add(a);
-
-                a = new Service_ListPojo(covers[5],"Security",6,arr[5]);
-                catlist.add(a);
-
-                a = new Service_ListPojo(covers[6],"Driver",7,arr[6]);
-                catlist.add(a);
-
-                adapter.notifyDataSetChanged();
+                prepareAlbums();
+              // AddValuesToPIEENTRY();
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.v("java123",error.getMessage());
+                //Log.v("java123",error.getMessage());
             }
         });
         MySingleton.getInstance(getApplicationContext()).addToRequestque(jsonArrayRequest);
-Log.v("javaAns1", String.valueOf(arr[0]));
+
+    }
+
+    private void prepareAlbums() {
+        Log.v("java","album");
+        catlist.removeAll(catlist);
+        final int[] covers = new int[]{
+                R.drawable.pg11,
+                R.drawable.tiffin11,
+                R.drawable.maid11,
+                R.drawable.contractor11,
+                R.drawable.mechanic,
+                R.drawable.s1,
+                R.drawable.driver};
+
+        Service_ListPojo a = new Service_ListPojo(covers[0],"P.G.",1,arr[0]);
+        catlist.add(a);
+
+        a = new Service_ListPojo(covers[1],"Tiffin",2,arr[1]);
+        catlist.add(a);
+
+        a = new Service_ListPojo(covers[2],"Maid",3,arr[2]);
+        catlist.add(a);
+
+        a = new Service_ListPojo(covers[3],"Contractor",4,arr[3]);
+        catlist.add(a);
+
+        a = new Service_ListPojo(covers[4],"Mechanic",5,arr[4]);
+
+        catlist.add(a);
+
+        a = new Service_ListPojo(covers[5],"Security",6,arr[5]);
+        catlist.add(a);
+
+        a = new Service_ListPojo(covers[6],"Driver",7,arr[6]);
+        catlist.add(a);
+
+        adapter.notifyDataSetChanged();
+
+
 
 
     }
     public void AddValuesToPIEENTRY(){
 
-        entries.add(new BarEntry(5, 0));
-        entries.add(new BarEntry(5, 1));
-        entries.add(new BarEntry(5, 2));
-        entries.add(new BarEntry(5, 3));
-        entries.add(new BarEntry(5, 4));
-        entries.add(new BarEntry(5, 5));
-        entries.add(new BarEntry(5, 6));
+        entries.add(new BarEntry(5, arr[0]));
+        entries.add(new BarEntry(5, arr[1]));
+        entries.add(new BarEntry(5, arr[2]));
+        entries.add(new BarEntry(5, arr[3]));
+        entries.add(new BarEntry(5, arr[4]));
+        entries.add(new BarEntry(5, arr[5]));
+        entries.add(new BarEntry(5, arr[6]));
 
     }
     public void AddValuesToPieEntryLabels(){

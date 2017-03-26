@@ -1,10 +1,13 @@
 package com.example.hetal13.afinal;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +16,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.amulyakhare.textdrawable.TextDrawable;
 import com.amulyakhare.textdrawable.util.ColorGenerator;
@@ -51,9 +55,38 @@ public class HistoryAdapter_SP extends RecyclerView.Adapter<HistoryAdapter_SP.Co
        /* TextDrawable drawable = TextDrawable.builder()
                 .buildRound("H", generator.getRandomColor());
 */
-        TextDrawable drawable = TextDrawable.builder()
-                .buildRound("H",generator.getRandomColor());
-        holder.img_id.setImageDrawable(drawable);
+        DisplayMetrics displayMetrics=new DisplayMetrics();
+        android.view.ViewGroup.LayoutParams layoutParams=holder.img_id.getLayoutParams();
+        ((Activity)context).getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        int height=displayMetrics.heightPixels;
+        int width=displayMetrics.widthPixels;
+        int screenSize = context.getResources().getConfiguration().screenLayout &
+                Configuration.SCREENLAYOUT_SIZE_MASK;
+
+        String toastMsg;
+        switch(screenSize) {
+            case Configuration.SCREENLAYOUT_SIZE_LARGE:
+                layoutParams.width = (width/13)*2;
+                layoutParams.height = (height/23)*2;
+                holder.img_id.setLayoutParams(layoutParams);
+                toastMsg = "Large screen";
+                break;
+            case Configuration.SCREENLAYOUT_SIZE_NORMAL:
+                layoutParams.width = (width/14)*2;
+                layoutParams.height = (height/25)*2;
+                holder.img_id.setLayoutParams(layoutParams);
+                toastMsg = "Normal screen";
+                break;
+            case Configuration.SCREENLAYOUT_SIZE_SMALL:
+                toastMsg = "Small screen";
+                break;
+            default:
+                toastMsg = "Screen size is neither large, normal or small";
+        }
+
+        holder.img_id.setImageDrawable(contact.getImg_id());
+
+
         holder.name.setText(contact.getName());
         holder.email.setOnClickListener(new View.OnClickListener() {
             @Override

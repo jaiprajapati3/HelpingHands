@@ -29,6 +29,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 
 import org.json.JSONArray;
@@ -79,7 +80,7 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
     EditText cost_acroom, cost_room, cost_fulltiffin, cost_halftiffin;
     Button pg_next, contractor_next, maid_next, driver_next, security_next, mechanic_next, tiffin_next;
 
-    String user_array[];
+    String user_array[],url_login;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -230,11 +231,12 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
         SpinnerExample.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View v, int position, long id) {
-
+                Log.v("cID","country");
                 cname = ((TextView) v.findViewById(R.id.tx_name)).getText().toString();
                 cid = ((TextView) v.findViewById(R.id.tx_id)).getText().toString();
                 final ProgressBar progressBar = (ProgressBar) findViewById(R.id.loadlist);
-                Log.v("selected country", cname);
+                Log.v("cID",cid);
+                Log.v("selected country", cid);
                 GetState_url = "https://hetal1395.000webhostapp.com/getstate.php?country_id=" + cid;
                 progressBar.setVisibility(View.VISIBLE);
                 SetStateList();
@@ -256,7 +258,7 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
                 sname = ((TextView) v.findViewById(R.id.tx_name)).getText().toString();
                 sid = ((TextView) v.findViewById(R.id.tx_id)).getText().toString();
                 final ProgressBar progressBar = (ProgressBar) findViewById(R.id.loadlist);
-                Log.v("selected state", sname);
+                Log.v("cID   "+"state", sid);
                 GetCity_url = "https://hetal1395.000webhostapp.com/getcity.php?state_id=" + sid;
                 progressBar.setVisibility(View.VISIBLE);
                 SetCityList();
@@ -471,6 +473,7 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
 
     private void SetAreaList() {
         //     Log.v("ResponseCountry","hello");
+        Log.v("java","ARea");
         JsonArrayRequest req = null;
         final ProgressBar progressBar = (ProgressBar) findViewById(R.id.loadlist);
         req = new JsonArrayRequest(Request.Method.GET, GetArea_url, null,
@@ -485,7 +488,7 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
                         final SpinnerModel model1 = new SpinnerModel();
                         model1.setId(0);
                         model1.setName("Select your Area");
-                        CustomListViewValuesArr.add(model1);
+                        CustomListViewValuesArr2.add(model1);
                         for (int i = 0; i < response.length(); i++) {
                             Log.e("E2#  ", "1");
                             try {
@@ -532,8 +535,8 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
                         final SpinnerModel model1 = new SpinnerModel();
                         model1.setId(0);
                         model1.setName("Select your City");
-                        CustomListViewValuesArr.add(model1);
-                        for (int i = 1; i < response.length(); i++) {
+                        CustomListViewValuesArr1.add(model1);
+                        for (int i = 0; i < response.length(); i++) {
                             Log.e("E2#  ", "1");
                             try {
                                 JSONObject state = (JSONObject) response.get(i);
@@ -582,8 +585,8 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
                         final SpinnerModel model1 = new SpinnerModel();
                         model1.setId(0);
                         model1.setName("Select your State");
-                        CustomListViewValuesArr.add(model1);
-                        for (int i = 1; i < response.length(); i++) {
+                        CustomListViewValuesArr1.add(model1);
+                        for (int i = 0; i < response.length(); i++) {
 
                             Log.e("E2#  ", "1");
                             try {
@@ -618,13 +621,13 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
         // final ProgressBar progressBar= (ProgressBar) findViewById(R.id.loadlist);
         //progressBar.setVisibility(View.VISIBLE);
         //Log.v("ResponseCountry","hello");
-
+Log.v("final1","Country");
         final ProgressBar progressBar = (ProgressBar) findViewById(R.id.loadlist);
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(url, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
 
-                Log.v("ResponseCountry", String.valueOf(response));
+                Log.v("final12", String.valueOf(response));
                 //   Log.v("#responsecountry", String.valueOf(response));
                 progressBar.setVisibility(View.GONE);
                 progressBar.setVisibility(View.INVISIBLE);
@@ -632,11 +635,11 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
                 model1.setId(0);
                 model1.setName("Select your Country");
                 CustomListViewValuesArr.add(model1);
-                for (int i = 1; i < response.length(); i++) {
+                for (int i = 0; i < response.length(); i++) {
                     Log.e("E2#  ", "1");
                     try {
                         JSONObject country = (JSONObject) response.get(i);
-                        Log.v("ans", country.getString("country_name"));
+                        Log.v("final13", country.getString("country_name"));
                         final SpinnerModel model = new SpinnerModel();
                         model.setName(country.getString("country_name"));
                         model.setId(country.getInt("country_id"));
@@ -669,6 +672,7 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
             case R.id.login_next:
 
                 linearlayout1.setVisibility(View.INVISIBLE);
+
                 linearlayout2.setVisibility(View.VISIBLE);
 
                 MyApplication.getInstance().getPrefManager().storeemail(email_select);
@@ -679,7 +683,46 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
 
 
                 } else {
-                    if (user_type.equalsIgnoreCase("Service Provider")) {
+//                    String email=MyApplication.getInstance().getPrefManager().getemail();
+//                    url_login=UrlString.url_string+"/Login.php?email="+email;
+//                    int type=1;//1 for registration
+//                    JsonObjectRequest jsonObjectRequest=new JsonObjectRequest(Request.Method.GET, url_login, null, new Response.Listener<JSONObject>() {
+//                        @Override
+//                        public void onResponse(JSONObject response) {
+//                            try {
+//                                boolean success=response.getBoolean("success");
+//                                if(success==true){
+//                                    String fname=response.getString("fname");
+//                                    String lname=response.getString("lname");
+//                                    String areaId=response.getString("areaId");
+//                                    String url_type=response.getString("user_type");
+//                                    MyApplication.getInstance().getPrefManager().storearea(areaId);
+//                                    MyApplication.getInstance().getPrefManager().storefirstname(fname);
+//                                    MyApplication.getInstance().getPrefManager().storelastname(lname);
+//                                    MyApplication.getInstance().getPrefManager().storeuser_mode(url_type);
+//                                    if(url_type.equals("2")){
+//                                        Intent urlHome=new Intent(getBaseContext(),Home.class);
+//                                        startActivity(urlHome);
+//                                    }
+//                                    if(url_type.equals("3")){
+//                                        Intent urlHome=new Intent(getBaseContext(),Service_feedback.class);
+//                                        startActivity(urlHome);
+//                                    }
+//
+//                                }
+//                            } catch (JSONException e) {
+//                                e.printStackTrace();
+//                            }
+//
+//                        }
+//                    }, new Response.ErrorListener() {
+//                        @Override
+//                        public void onErrorResponse(VolleyError error) {
+//                            Log.v("Error",error.getMessage());
+//                        }
+//                    });
+//                    MySingleton.getInstance(this).addToRequestque(jsonObjectRequest);
+                   if (user_type.equalsIgnoreCase("Service Provider")) {
                         linearlayout1.setVisibility(View.INVISIBLE);
                         linearlayout2.setVisibility(View.INVISIBLE);
                         linearlayout3.setVisibility(View.VISIBLE);

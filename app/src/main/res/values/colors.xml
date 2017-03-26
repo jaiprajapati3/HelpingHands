@@ -11,6 +11,7 @@
     <color name="Splash">#701b46</color>
     <color name="ProgressSplash">#FFFFFF</color>
     <color name="ProgressBar">#701b46</color>
+    <color name="textColor">#000000</color>
         <!-- dots inactive colors -->
         <color name="dot_dark_screen">#a32264</color>
         <!-- dots active colors -->

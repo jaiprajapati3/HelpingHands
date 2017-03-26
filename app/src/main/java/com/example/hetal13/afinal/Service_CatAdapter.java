@@ -1,15 +1,21 @@
 package com.example.hetal13.afinal;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.amulyakhare.textdrawable.TextDrawable;
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
@@ -32,6 +38,7 @@ public class Service_CatAdapter extends RecyclerView.Adapter<Service_CatAdapter.
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.service_card, parent, false);
 
@@ -45,11 +52,16 @@ public class Service_CatAdapter extends RecyclerView.Adapter<Service_CatAdapter.
         Log.v("java123",album.getCatname());
         holder.count.setText(String.valueOf(album.getCount()));
        // Log.v("java123", String.valueOf(album.getCount()));
+
+        // TextDrawable drawable = TextDrawable.builder()
+         //       .buildRound("H", Color.parseColor("#701b46"));
+       // holder.thumbnail.setImageDrawable(drawable);
         holder.thumbnail.setImageResource(album.getThumbnail());
         // loading album cover using Glide library
         Glide.with(mContext).load(album.getThumbnail()).into(holder.thumbnail);
 
     }
+
 
     @Override
     public int getItemCount() {
@@ -70,6 +82,7 @@ public class Service_CatAdapter extends RecyclerView.Adapter<Service_CatAdapter.
             thumbnail = (ImageView) view.findViewById(R.id.thumbnail);
             count= (TextView) view.findViewById(R.id.txtviewCount);
             thumbnail.setOnClickListener(this);
+
 
         }
 

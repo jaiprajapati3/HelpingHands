@@ -13,11 +13,19 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 /**
  * Created by Lenovo on 3/11/2017.
@@ -28,11 +36,12 @@ public class TiffinMenuFragment extends DialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         final AlertDialog.Builder alertdialog = new AlertDialog.Builder(getActivity());
         Log.v("TAG","at fragement");
-        LayoutInflater inflater = (LayoutInflater) getActivity()
+        LayoutInflater inflater = (LayoutInflater) getActivity().getBaseContext()
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View v = inflater.inflate(R.layout.fragment_tiffinlayout, null);
         alertdialog.setView(v);
         alertdialog.setCancelable(false);
+
         final EditText addmenu= (EditText) v.findViewById(R.id.et_addmenu);
         Button add= (Button) v.findViewById(R.id.bt_addmenu);
         ImageButton cancle= (ImageButton) v.findViewById(R.id.bt_canclemenu);
@@ -45,16 +54,33 @@ public class TiffinMenuFragment extends DialogFragment {
 
         add.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(final View view) {
                 String type=selectmenu.getSelectedItem().toString();
-                Log.v("type",type);
-                String email=MyApplication.getInstance().getPrefManager().getemail();
+                Log.v("java1",type);
+                //String email=MyApplication.getInstance().getPrefManager().getemail();
+                String email="vaidyameghna1996@gmail.com";
                 String menu= String.valueOf(addmenu.getText());
-                String url_menu=UrlString.url_string+"/tiffin_update.php?type="+type+"&menu="+menu+"&email="+email;
-                Log.v("type",url_menu);
-                StringRequest stringRequest=new StringRequest(Request.Method.GET, url_menu, new Response.Listener<String>() {
+                Date now = new Date();
+
+                Date alsoNow = Calendar.getInstance().getTime();
+                String nowAsString = new SimpleDateFormat("yyyy-MM-dd").format(now);
+
+                String url_menu=UrlString.url_string+"/tiffinf_Add.php?type="+type+"&menu="+menu+"&email="+email+"&timing="+nowAsString;
+                url_menu = url_menu.replace(" ", "%20");
+                Log.v("url",url_menu);
+                final StringRequest stringRequest=new StringRequest(Request.Method.GET, url_menu, new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
+                        Log.v("Response",response);
+                        JSONObject obj= null;
+                        try {
+                            obj = new JSONObject(response);
+                            String objResponse=obj.getString("success");
+                            Log.v("Response1",objResponse);
+                            Toast.makeText(view.getContext(),"Your Menu has been added",Toast.LENGTH_LONG);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
 
                     }
                 }, new Response.ErrorListener() {

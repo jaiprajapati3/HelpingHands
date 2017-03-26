@@ -45,31 +45,31 @@
         <item id="2">Service Provider</item>
     </string-array>
 
-        <string name="driverTitle">Driver Details</string>
+    <string name="driverTitle">Driver Details</string>
     <string name="workexp_driver">Enter Work Experience</string>
     <string name="driver_next">Submit</string>
     <string name="cost_driver">Enter Minimum Cost</string>
 
-        <string name="mechanicTitle">Mechanic Details</string>
+    <string name="mechanicTitle">Mechanic Details</string>
     <string name="workexp_mechanic">Enter Work Experience</string>
     <string name="mechanic_next">Submit</string>
     <string name="cost_mechanic">Enter Minimum Cost</string>
 
-        <string name="securityTitle">Security Details</string>
+    <string name="securityTitle">Security Details</string>
     <string name="workexp_security">Enter Work Experience</string>
     <string name="security_next">Submit</string>
     <string name="cost_security">Enter Minimum Cost</string>
-        <string-array name="shift">Select the Shift
-            <item>Day Shift</item>
-            <item>Night Shift</item>
-        </string-array>
+    <string-array name="shift">Select the Shift
+        <item>Day Shift</item>
+        <item>Night Shift</item>
+    </string-array>
 
     <string name="tiffinTitle">Tiffin Details</string>
     <string name="tiffin_next">Submit</string>
     <string name="cost_fulltiffin">Enter Full Tiffin Charges</string>
     <string name="cost_halftiffin">Enter Half Tiffin Charges</string>
 
-        <string name="maidTitle">HouseMaid Details</string>
+    <string name="maidTitle">HouseMaid Details</string>
     <string name="workexp_maid">Enter Work Experience</string>
     <string name="maid_next">Submit</string>
     <string-array name="slot">Select the Shift
@@ -77,15 +77,15 @@
         <item>day</item>
         <item>month</item>
     </string-array>
-        <string name="cost_maid">Enter Minimum Cost</string>
+    <string name="cost_maid">Enter Minimum Cost</string>
 
 
-        <string name="contractorTitle">Contractor Details</string>
+    <string name="contractorTitle">Contractor Details</string>
     <string name="workexp_contractor">Enter Work Experience</string>
     <string name="contractor_next">Submit</string>
     <string name="cost_contractor">Enter Minimum Cost</string>
 
-        <string name="pgTitle">PG Details</string>
+    <string name="pgTitle">PG Details</string>
     <string-array name="no_of_persons">Enter number of persons per room
         <item>Select number of Persons</item>
         <item>5</item>
@@ -97,7 +97,7 @@
     <string name="pg_next">Submit</string>
     <string name="cost_acroom">Enter Room Charges</string>
     <string name="cost_room">Enter Room Charges</string>
-        <string name="title_activity_registration">Registration</string>
+    <string name="title_activity_registration">Registration</string>
     <string name="connection_dialog">No Internet Connection \n Please try again later</string>
 
 
@@ -109,7 +109,7 @@
     <!--   name of button-->
     <string name="tiffinMenuButton">ADD</string>
     <string-array name="menu">
-        <item>Select catogory</item>
+        <item>Select category</item>
         <item>Lunch</item>
         <item>Dinner</item>
     </string-array>

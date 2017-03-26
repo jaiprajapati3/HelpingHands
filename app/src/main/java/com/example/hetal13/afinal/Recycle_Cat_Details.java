@@ -36,7 +36,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class Recycle_Cat_Details extends AppCompatActivity {
     String skill_id;
@@ -78,10 +80,13 @@ public class Recycle_Cat_Details extends AppCompatActivity {
         Log.v("Hello", skill_id);
         // Take area_id from the sharedPreference
         area_id = 1;
-        url_getSpList = "http://hetal1395.000webhostapp.com/List_Sp.php?skill_id=" + skill_id + "&area_id=" + area_id;
-        Log.v("URL", "#$" + url_getSpList);
+        Calendar c = Calendar.getInstance();
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        String timing = df.format(c.getTime());
+        url_getSpList = "http://hetal1395.000webhostapp.com/List_Sp.php?skill_id=" + skill_id + "&area_id=" + area_id +"&timing="+timing;
+        Log.v("at", "#$" + url_getSpList);
 
-      //  progressBar.setVisibility(View.VISIBLE);
+        //  progressBar.setVisibility(View.VISIBLE);
 
 //    private void prepareService() {
 //        int[] covers = new int[]{
@@ -127,7 +132,7 @@ public class Recycle_Cat_Details extends AppCompatActivity {
             @Override
 
             public void onResponse(JSONArray response) {
-                Log.v("at ", "response");
+                Log.v("atFinal", String.valueOf(response));
                 progressbar_loadlist.setVisibility(View.GONE);
                 for (int i = 0; i < response.length(); i++) {
                     Log.v("at", "here");
@@ -166,7 +171,13 @@ public class Recycle_Cat_Details extends AppCompatActivity {
                 adapter = new ServiceAdapter(Recycle_Cat_Details.this,arrayList);
 
                 recyclerView.setHasFixedSize(true);
-                RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(Recycle_Cat_Details.this, 2);
+                RecyclerView.LayoutManager mLayoutManager;
+                if(skill_id.equals("2")){
+                     mLayoutManager = new GridLayoutManager(Recycle_Cat_Details.this, 1);
+                }
+                else {
+                     mLayoutManager = new GridLayoutManager(Recycle_Cat_Details.this, 2);
+                }
                 recyclerView.setLayoutManager(mLayoutManager);
                 recyclerView.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(10), true));
                 recyclerView.setItemAnimator(new DefaultItemAnimator());

@@ -121,7 +121,7 @@ for(String str: checkboxlist){
         username.setText(fname+" "+lname);
         email.setText(email_data);
 
-        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+       // drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.drawer_open, R.string.drawer_close);
 
 
@@ -191,6 +191,9 @@ for(String str: checkboxlist){
         if (User_OR_Provider.equalsIgnoreCase("Service Provider")) {
             Menu m = navigationView.getMenu();
             //m.findItem(R.id.service).setVisible(false);
+            m.findItem(R.id.aboutUs).setVisible(true);
+            m.findItem(R.id.shareApp).setVisible(true);
+
             if( MyApplication.getInstance().getPrefManager().getcheckbox().equalsIgnoreCase("2"))
             {
                 m.findItem(R.id.SP_feedback).setVisible(true);
@@ -213,11 +216,10 @@ for(String str: checkboxlist){
             }
 
 
-            m.findItem(R.id.service).setVisible(false);
+            m.findItem(R.id.dashboard).setVisible(false);
             m.findItem(R.id.Edit).setVisible(false);
             m.findItem(R.id.feedback).setVisible(false);
             m.findItem(R.id.history).setVisible(false);
-            m.findItem(R.id.rating).setVisible(false);
             m.findItem(R.id.offer).setVisible(false);
 
 
@@ -225,12 +227,13 @@ for(String str: checkboxlist){
         }
         if (User_OR_Provider.equalsIgnoreCase("User")) {
             Menu m = navigationView.getMenu();
-            m.findItem(R.id.service).setVisible(true);
+            m.findItem(R.id.dashboard).setVisible(true);
             m.findItem(R.id.Edit).setVisible(true);
             m.findItem(R.id.feedback).setVisible(true);
             m.findItem(R.id.history).setVisible(true);
-            m.findItem(R.id.rating).setVisible(true);
             m.findItem(R.id.offer).setVisible(true);
+            m.findItem(R.id.aboutUs).setVisible(true);
+            m.findItem(R.id.shareApp).setVisible(true);
 
 
             m.findItem(R.id.SP_feedback).setVisible(false);
@@ -270,9 +273,11 @@ for(String str: checkboxlist){
 
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                navigationView.setSelected(true);
+
                 switch (item.getItemId()) {
-                    case R.id.Edit:
-                        Intent edit = new Intent(getApplicationContext(), Edit.class);
+                    case R.id.dashboard:
+                        Intent edit = new Intent(getApplicationContext(), Home.class);
                         startActivity(edit);
                         drawerLayout.closeDrawers();
                         break;
@@ -287,14 +292,9 @@ for(String str: checkboxlist){
                         startActivity(history1);
                         drawerLayout.closeDrawers();
                         break;
-                    case R.id.service:
-                        Intent service1 = new Intent(getApplicationContext(), service.class);
+                    case R.id.Edit:
+                        Intent service1 = new Intent(getApplicationContext(), Edit.class);
                         startActivity(service1);
-                        drawerLayout.closeDrawers();
-                        break;
-                    case R.id.rating:
-                        Intent rating1 = new Intent(getApplicationContext(), rating.class);
-                        startActivity(rating1);
                         drawerLayout.closeDrawers();
                         break;
                     case R.id.offer:
@@ -346,6 +346,18 @@ for(String str: checkboxlist){
                         startActivity(tiffin);
                         drawerLayout.closeDrawers();
                         break;
+                    case R.id.shareApp:
+                        try {
+                            Intent share = new Intent(Intent.ACTION_SEND);
+                            share.setType("text/plain");
+                            share.putExtra(Intent.EXTRA_SUBJECT, "Helping Hands");
+                            share.putExtra(Intent.EXTRA_TEXT,"Hello");
+                            startActivity(Intent.createChooser(share, "Helping Hands"));
+                        }
+                        catch (Exception e)
+                        {
+                            e.printStackTrace();
+                        }
 
                 }
                 return false;
