@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -30,6 +31,7 @@ public class Service_feedback extends Navigation {
     String url_commentshow;
     RecyclerView.Adapter adapter;
     RecyclerView.LayoutManager layoutManager;
+    ProgressBar progressBar;
     private int area_id;
 
     @Override
@@ -43,7 +45,7 @@ public class Service_feedback extends Navigation {
         getSupportActionBar().setTitle("Service feedback");
         //hetal
         recyclerView = (RecyclerView) findViewById(R.id.recycle);
-
+        progressBar= (ProgressBar) findViewById(R.id.progressbar_loadlist);
        // int sp_id = 4;
         String Email="reenajani@gmail.com";
 //get id from shared Preference
@@ -54,6 +56,7 @@ public class Service_feedback extends Navigation {
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url_commentshow, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
+                progressBar.setVisibility(View.GONE);
                 Log.e("TAG","123");
                 for (int i = 0; i < response.length(); i++) {
                     try {

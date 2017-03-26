@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 
 import com.amulyakhare.textdrawable.TextDrawable;
 import com.amulyakhare.textdrawable.util.ColorGenerator;
@@ -34,6 +35,7 @@ public class Service_history extends Navigation {
     RecyclerView.LayoutManager layoutManager;
     //int img_id=R.drawable.hetal;
     String name,email,mobile;
+    ProgressBar progressBar;
     Handler handler = new Handler();
     ArrayList<HistoryPojo> arrayList = new ArrayList<HistoryPojo>();
     ColorGenerator generator = ColorGenerator.MATERIAL;
@@ -52,6 +54,7 @@ public class Service_history extends Navigation {
         name="Hetal Shah";
         email="hetalshah027@gmail.com";
         mobile="8487046558";
+        progressBar= (ProgressBar) findViewById(R.id.progressbar_loadlist);
         //Random rnd = new Random();
        // int color = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
 //        final TextDrawable drawable = TextDrawable.builder()
@@ -69,6 +72,7 @@ public class Service_history extends Navigation {
         JsonArrayRequest jsonArrayRequest=new JsonArrayRequest(Request.Method.GET, url_history, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
+                progressBar.setVisibility(View.GONE);
                 Log.v("TAG1234",response.toString());
                 for(int i=0;i<response.length();i++){
                     try {

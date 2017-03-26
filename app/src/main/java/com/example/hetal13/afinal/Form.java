@@ -117,14 +117,35 @@ public class Form extends AppCompatActivity {
             char letter = name.charAt(0);
             TextDrawable drawable = TextDrawable.builder()
                     .buildRound(String.valueOf(letter).toUpperCase(), Color.parseColor("#701b46"));
-            DisplayMetrics displayMetrics = new DisplayMetrics();
-            android.view.ViewGroup.LayoutParams layoutParams = image.getLayoutParams();
+            DisplayMetrics displayMetrics=new DisplayMetrics();
+            android.view.ViewGroup.LayoutParams layoutParams=image.getLayoutParams();
             getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-            int height = displayMetrics.heightPixels;
-            int width = displayMetrics.widthPixels;
+            int height=displayMetrics.heightPixels;
+            int width=displayMetrics.widthPixels;
             int screenSize = getResources().getConfiguration().screenLayout &
                     Configuration.SCREENLAYOUT_SIZE_MASK;
 
+            String toastMsg;
+            switch(screenSize) {
+                case Configuration.SCREENLAYOUT_SIZE_LARGE:
+                    layoutParams.width = (width/9)*3;
+                    layoutParams.height = (height/10)*2;
+                    image.setLayoutParams(layoutParams);
+                    toastMsg = "Large screen";
+                    break;
+                case Configuration.SCREENLAYOUT_SIZE_NORMAL:
+                    layoutParams.width = (width/9)*3;
+                    layoutParams.height = (height/11)*2;
+                    image.setLayoutParams(layoutParams);
+                    toastMsg = "Normal screen";
+                    break;
+                case Configuration.SCREENLAYOUT_SIZE_SMALL:
+                    toastMsg = "Small screen";
+                    break;
+                default:
+                    toastMsg = "Screen size is neither large, normal or small";
+            }
+            Toast.makeText(getBaseContext(), toastMsg, Toast.LENGTH_LONG).show();
             image.setImageDrawable(drawable);
             double rating = obj.getDouble("rating");
             ratingBar.setRating((float) rating);

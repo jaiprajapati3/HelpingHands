@@ -7,7 +7,7 @@
         android:id="@+id/dashboard"
         android:title="Dashboard"
         android:checkable="true"
-        android:icon="@drawable/edit"
+        android:icon="@drawable/dashboard"
         ></item>
     <item
         android:id="@+id/Edit"
@@ -77,13 +77,13 @@
     <item
         android:id="@+id/aboutUs"
         android:title="About Us"
-        android:icon="@drawable/feedback"
+        android:icon="@drawable/aboutus"
         >
         </item>
     <item
         android:id="@+id/shareApp"
         android:title="Share"
-        android:icon="@drawable/feedback"
+        android:icon="@drawable/share"
         >
 
     </item>

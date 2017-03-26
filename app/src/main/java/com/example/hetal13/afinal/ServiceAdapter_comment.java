@@ -2,6 +2,7 @@ package com.example.hetal13.afinal;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -78,6 +79,16 @@ public     Context context;
 
             }
         });
+        holder.feedEmail.setOnClickListener(new View.OnClickListener() {
+            String Email="reenajani@gmail.com";
+            @Override
+
+            public void onClick(View v) {
+                Intent emailIntent = new Intent(Intent.ACTION_SENDTO);
+                emailIntent.setData(Uri.parse("mailto:" +Email));
+                v.getContext().startActivity(Intent.createChooser(emailIntent,"Send Mail to"));
+            }
+        });
     }
 
     @Override
@@ -87,7 +98,7 @@ public     Context context;
 
     public static class ContactView extends RecyclerView.ViewHolder {
         TextView name_user, feed_user;
-        ImageButton trash;
+        ImageButton trash,feedEmail;
         ArrayList<ServicePojo_comment> sp_detail = new ArrayList<ServicePojo_comment>();
         Context context;
 
@@ -98,6 +109,7 @@ public     Context context;
             name_user = (TextView) view.findViewById(R.id.name_user);
             feed_user = (TextView) view.findViewById(R.id.feed_user);
             trash = (ImageButton) view.findViewById(R.id.trash);
+            feedEmail= (ImageButton) view.findViewById(R.id.emailFeedBack);
       /*          TitleName=(TextView)view.findViewById(R.id.TitleName);
                 desc=(TextView) view.findViewById(R.id.desc);*/
         }

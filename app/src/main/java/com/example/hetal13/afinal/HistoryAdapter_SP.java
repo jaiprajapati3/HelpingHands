@@ -7,6 +7,8 @@ import android.content.res.Configuration;
 import android.graphics.Color;
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
+import android.telephony.PhoneStateListener;
+import android.telephony.TelephonyManager;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -85,25 +87,16 @@ public class HistoryAdapter_SP extends RecyclerView.Adapter<HistoryAdapter_SP.Co
         }
 
         holder.img_id.setImageDrawable(contact.getImg_id());
-
-
         holder.name.setText(contact.getName());
-        holder.email.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent emailIntent = new Intent(Intent.ACTION_SENDTO);
-                emailIntent.setData(Uri.parse("mailto: hetalshah027@gmail.com"));
-                v.getContext().startActivity(Intent.createChooser(emailIntent,"Send Mail to"));
-            }
-        });
         holder.mobile.setText(contact.getMobile());
+
     }
 
     @Override
     public int getItemCount() {
         return contacts.size();
     }
-    public static class ContactView extends RecyclerView.ViewHolder{
+    public static class ContactView extends RecyclerView.ViewHolder implements RecyclerView.OnClickListener{
         ImageView img_id;
         TextView name,mobile;
         ImageButton email;
@@ -115,11 +108,21 @@ public class HistoryAdapter_SP extends RecyclerView.Adapter<HistoryAdapter_SP.Co
             super(view);
             this.context=context;
             this.contacts=contacts;
+            view.setOnClickListener(this);
             img_id=(ImageView) view.findViewById(R.id.img_person);
             name=(TextView)view.findViewById(R.id.person_name);
-            email= (ImageButton) view.findViewById(R.id.person_email);
             mobile=(TextView) view.findViewById(R.id.person_contact);
 
+        }
+        @Override
+        public  void onClick(View v){
+            int position = getAdapterPosition();
+            HistoryPojo contact = this.contacts.get(position);
+            Log.v("here","ContactAdapter");
+            Intent callIntent = new Intent(Intent.ACTION_DIAL);
+            callIntent.setData(Uri.parse("tel:"+Uri.encode("9879815099".trim())));
+            callIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            v.getContext().startActivity(callIntent);
         }
     }
 }
