@@ -5,7 +5,7 @@ package com.example.hetal13.afinal;
  */
 
 public class ServicePojo_comment {
-    private String name_user,feed_user,phone,customerId;
+    private String name_user,feed_user,phone,customerId,email;
 
 
     public ServicePojo_comment(){
@@ -20,12 +20,12 @@ public class ServicePojo_comment {
         this.customerId = customerId;
     }
 
-    public ServicePojo_comment(String name_user, String feed_user, String phone, String customerId) {
+    public ServicePojo_comment(String name_user, String feed_user, String phone, String customerId,String email) {
         this.name_user = name_user;
         this.phone=phone;
         this.customerId=customerId;
         this.feed_user = feed_user;
-
+        this.email=email;
     }
 
     public String getPhone() {
@@ -34,6 +34,13 @@ public class ServicePojo_comment {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+     public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getName_user() {
