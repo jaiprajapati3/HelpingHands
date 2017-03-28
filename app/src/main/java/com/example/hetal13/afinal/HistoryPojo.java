@@ -10,16 +10,23 @@ public class HistoryPojo  {
 
     private String email,mobile,name;
     private TextDrawable img_id;
+    private int flag;
 
-    public HistoryPojo(TextDrawable img_id, String name, String email, String mobile)
+    public HistoryPojo(TextDrawable img_id, String name, String email, String mobile,int flag)
     {
+        this.setFlag(flag);
         this.setImg_id(img_id);
         this.setName(name);
         this.setEmail(email);
         this.setMobile(mobile);
     }
+public int getFlag() {
+        return flag;
+    }
 
-
+    public int  setFlag(int flag){
+        this.flag=flag;
+    }
 
     public String getEmail() {
         return email;
