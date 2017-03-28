@@ -33,19 +33,23 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/incoming"
-                android:layout_toRightOf="@+id/img_person"
-                android:layout_toLeftOf="@+id/person_contact"
-                android:visibility="visible"
-                android:background="#FFFFFF"/>
+                android:src="@drawable/out"
+                android:visibility="gone"
+                android:layout_toRightOf="@id/img_person"
+                android:layout_below="@+id/person_name"
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="0dp"
+                android:id="@+id/outgoing" />
             <ImageView
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:src="@drawable/outgoing"
-                android:layout_toLeftOf="@+id/person_contact"
-                android:layout_toRightOf="@+id/img_person"
-                android:visibility="visible"
-                android:background="#FFFFFF"/>
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/income"
+                android:id="@+id/incoming"
+                android:layout_toRightOf="@id/img_person"
+                android:layout_below="@+id/person_name"
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="0dp"
+                android:visibility="gone"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

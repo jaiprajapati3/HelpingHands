@@ -28,6 +28,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import static com.example.hetal13.afinal.R.drawable.incoming;
+import static com.example.hetal13.afinal.R.drawable.outgoing;
+
 /**
  * Created by Hetal13 on 01-11-2016.
  */
@@ -52,12 +55,10 @@ public class HistoryAdapter_SP extends RecyclerView.Adapter<HistoryAdapter_SP.Co
     @Override
     public void onBindViewHolder(ContactView holder, int position) {
         HistoryPojo contact =contacts.get(position);
-        Random rnd = new Random();
         int flag=contact.getFlag();
+
+        Random rnd = new Random();
         int color = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
-       /* TextDrawable drawable = TextDrawable.builder()
-                .buildRound("H", generator.getRandomColor());
-*/
         DisplayMetrics displayMetrics=new DisplayMetrics();
         android.view.ViewGroup.LayoutParams layoutParams=holder.img_id.getLayoutParams();
         ((Activity)context).getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
@@ -65,7 +66,6 @@ public class HistoryAdapter_SP extends RecyclerView.Adapter<HistoryAdapter_SP.Co
         int width=displayMetrics.widthPixels;
         int screenSize = context.getResources().getConfiguration().screenLayout &
                 Configuration.SCREENLAYOUT_SIZE_MASK;
-
         String toastMsg;
         switch(screenSize) {
             case Configuration.SCREENLAYOUT_SIZE_LARGE:
@@ -90,13 +90,8 @@ public class HistoryAdapter_SP extends RecyclerView.Adapter<HistoryAdapter_SP.Co
         holder.img_id.setImageDrawable(contact.getImg_id());
         holder.name.setText(contact.getName());
         holder.mobile.setText(contact.getMobile());
-        if(flag ==1){
-            holder.outgoing.setVisiblity(View.VISIBLE);
-        }
-        else{
-             holder.incoming.setVisiblity(View.VISIBLE);
-        }
-
+        if (flag ==1) holder.incoming.setVisibility(View.VISIBLE);
+        else holder.outgoing.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -119,9 +114,9 @@ public class HistoryAdapter_SP extends RecyclerView.Adapter<HistoryAdapter_SP.Co
             img_id=(ImageView) view.findViewById(R.id.img_person);
             name=(TextView)view.findViewById(R.id.person_name);
             mobile=(TextView) view.findViewById(R.id.person_contact);
-            incoming=(ImageView)view.findViewById(R.id.income);
-            outgoing=(ImageView)view.findViewById(R.id.outcome);
-            
+            incoming= (ImageView) view.findViewById(R.id.incoming);
+            outgoing=(ImageView)view.findViewById(R.id.outgoing);
+
         }
         @Override
         public  void onClick(View v){
