@@ -83,7 +83,7 @@ public class Service_history extends Navigation {
                         String letter = String.valueOf(name.charAt(0)).toUpperCase();
                         String email=jsonObject.getString("email");
                         String mobile=jsonObject.getString("phone");
-                        int flag=jsonObject.getString("way");
+                        int flag=Integer.parseInt(jsonObject.getString("way"));
 
 //                        TextDrawable drawable1=TextDrawable.builder().buildRound(String.valueOf(name.toUpperCase().charAt(0)),Color.parseColor("#701b46"));
                   final   TextDrawable drawable1 = TextDrawable.builder()

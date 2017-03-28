@@ -30,6 +30,22 @@
                 android:layout_marginLeft="20dp"
                 android:layout_alignParentTop="true"
                 android:id="@+id/person_name"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/incoming"
+                android:layout_toRightOf="@+id/img_person"
+                android:layout_toLeftOf="@+id/person_contact"
+                android:visibility="visible"
+                android:background="#FFFFFF"/>
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/outgoing"
+                android:layout_toLeftOf="@+id/person_contact"
+                android:layout_toRightOf="@+id/img_person"
+                android:visibility="visible"
+                android:background="#FFFFFF"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

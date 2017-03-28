@@ -80,12 +80,12 @@ public class history extends Navigation {
                         String letter = String.valueOf(name.charAt(0)).toUpperCase();
                         String email=jsonObject.getString("email");
                         String mobile=jsonObject.getString("phone");
-
+                        int flag=Integer.parseInt(jsonObject.getString("way"));
 //                        TextDrawable drawable1=TextDrawable.builder().buildRound(String.valueOf(name.toUpperCase().charAt(0)),Color.parseColor("#701b46"));
                         final   TextDrawable drawable1 = TextDrawable.builder()
                                 .buildRound(letter, generator.getRandomColor());
 
-                        HistoryPojo historyPojo=new HistoryPojo(drawable1,name,email,mobile);
+                        HistoryPojo historyPojo=new HistoryPojo(drawable1,name,email,mobile,flag);
                         arrayList.add(historyPojo);
                     } catch (JSONException e) {
                         e.printStackTrace();

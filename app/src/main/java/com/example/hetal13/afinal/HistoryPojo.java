@@ -20,13 +20,9 @@ public class HistoryPojo  {
         this.setEmail(email);
         this.setMobile(mobile);
     }
-public int getFlag() {
-        return flag;
-    }
+    public int getFlag() {
+        return flag;}
 
-    public void  setFlag(int flag){
-        this.flag=flag;
-    }
 
     public String getEmail() {
         return email;
@@ -59,8 +55,5 @@ public int getFlag() {
     public void setName(String name) {
         this.name = name;
     }
-
-
-
-
+    public void setFlag(int flag){this.flag=flag;}
 }
