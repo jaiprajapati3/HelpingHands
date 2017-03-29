@@ -53,6 +53,7 @@ public class HistoryAdapter_SP extends RecyclerView.Adapter<HistoryAdapter_SP.Co
     public void onBindViewHolder(ContactView holder, int position) {
         HistoryPojo contact =contacts.get(position);
         Random rnd = new Random();
+        int flag=contact.getFlag();
         int color = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
        /* TextDrawable drawable = TextDrawable.builder()
                 .buildRound("H", generator.getRandomColor());
@@ -89,6 +90,12 @@ public class HistoryAdapter_SP extends RecyclerView.Adapter<HistoryAdapter_SP.Co
         holder.img_id.setImageDrawable(contact.getImg_id());
         holder.name.setText(contact.getName());
         holder.mobile.setText(contact.getMobile());
+        if(flag ==1){
+            holder.outgoing.setVisiblity(View.VISIBLE);
+        }
+        else{
+             holder.incoming.setVisiblity(View.VISIBLE);
+        }
 
     }
 
@@ -100,7 +107,7 @@ public class HistoryAdapter_SP extends RecyclerView.Adapter<HistoryAdapter_SP.Co
         ImageView img_id;
         TextView name,mobile;
         ImageButton email;
-
+        ImageView incoming,outgoing;
         ArrayList<HistoryPojo> contacts = new ArrayList<HistoryPojo>();
         Context context;
         public ContactView(View view,Context context,ArrayList<HistoryPojo> contacts)
@@ -112,7 +119,9 @@ public class HistoryAdapter_SP extends RecyclerView.Adapter<HistoryAdapter_SP.Co
             img_id=(ImageView) view.findViewById(R.id.img_person);
             name=(TextView)view.findViewById(R.id.person_name);
             mobile=(TextView) view.findViewById(R.id.person_contact);
-
+            incoming=(ImageView)view.findViewById(R.id.income);
+            outgoing=(ImageView)view.findViewById(R.id.outcome);
+            
         }
         @Override
         public  void onClick(View v){
