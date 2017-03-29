@@ -67,7 +67,7 @@ public class Service_history extends Navigation {
         //String Email=MyApplication.getInstance().getPrefManager().getemail();
         String Email="reenajani@gmail.com";
 
-        String url_history=UrlString.url_string+"/history.php?email="+Email;
+        String url_history=UrlString.url_string+"/call_history.php?email="+Email;
         Log.v("TAG1",url_history);
         JsonArrayRequest jsonArrayRequest=new JsonArrayRequest(Request.Method.GET, url_history, null, new Response.Listener<JSONArray>() {
             @Override
@@ -83,12 +83,13 @@ public class Service_history extends Navigation {
                         String letter = String.valueOf(name.charAt(0)).toUpperCase();
                         String email=jsonObject.getString("email");
                         String mobile=jsonObject.getString("phone");
+                        int flag=jsonObject.getString("way");
 
 //                        TextDrawable drawable1=TextDrawable.builder().buildRound(String.valueOf(name.toUpperCase().charAt(0)),Color.parseColor("#701b46"));
                   final   TextDrawable drawable1 = TextDrawable.builder()
                                 .buildRound(letter, generator.getRandomColor());
 
-                        HistoryPojo historyPojo=new HistoryPojo(drawable1,name,email,mobile);
+                        HistoryPojo historyPojo=new HistoryPojo(drawable1,name,email,mobile,flag);
                         arrayList.add(historyPojo);
                     } catch (JSONException e) {
                         e.printStackTrace();
