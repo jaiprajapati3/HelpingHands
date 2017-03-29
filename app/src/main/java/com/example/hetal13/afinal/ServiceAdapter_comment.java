@@ -54,6 +54,7 @@ public     Context context;
         holder.feed_user.setText(description);
         holder.trash.setOnClickListener(new View.OnClickListener() {
             String Email = "reenajani@gmail.com";
+     //       String Email=sp_detail2.getEmail();
             String customerId = sp_detail2.getCustomerId();
             String url_delete = UrlString.url_string + "/delete_comment.php?email=" + Email + "&customer_id=" + customerId;
 
@@ -80,7 +81,8 @@ public     Context context;
             }
         });
         holder.feedEmail.setOnClickListener(new View.OnClickListener() {
-            String Email="reenajani@gmail.com";
+       //     String Email="reenajani@gmail.com";
+             String Email=sp_detail2.getEmail();
             @Override
 
             public void onClick(View v) {
