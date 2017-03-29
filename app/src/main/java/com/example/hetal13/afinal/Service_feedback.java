@@ -75,12 +75,14 @@ public class Service_feedback extends Navigation {
                         JSONArray profile = object.getJSONArray("Profile");
                         String name = String.valueOf(profile.get(0));
                         String phone=String.valueOf(profile.get(2));
+                        String email=String.valueOf(profile.get(1));
                         String cId=object.getString("customer_id");
                         Log.e("TAG",name);
                         Log.e("java",phone);
                         Log.v("java",commentShow);
                         contact.setName_user(name);
                         contact.setPhone(phone);
+                        contact.setEmail(email);
                         contact.setCustomerId(cId);
 
                         arrayList.add(contact);
