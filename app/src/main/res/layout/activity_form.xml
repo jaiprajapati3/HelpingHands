@@ -120,7 +120,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:layout_marginTop="7dp"
                 android:background="@android:color/transparent"
                 android:src="@drawable/callform" />
 
@@ -135,7 +134,6 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
-                android:layout_marginTop="7dp"
                 android:src="@drawable/chatform" />
 
             <View
@@ -149,8 +147,7 @@
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:src="@drawable/emailform"
-                android:id="@+id/emailForm"
-                android:layout_marginTop="7dp"/>
+                android:id="@+id/emailForm"/>
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

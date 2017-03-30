@@ -92,8 +92,8 @@ public class HistoryAdapter_SP extends RecyclerView.Adapter<HistoryAdapter_SP.Co
         holder.mobile.setText(contact.getMobile());
         holder.tvDate.setText(contact.getDate());
         holder.tvTime.setText(contact.getTime());
-        if (flag ==1) holder.incoming.setVisibility(View.VISIBLE);
-        else holder.outgoing.setVisibility(View.VISIBLE);
+        if (flag ==1) holder.outgoing.setVisibility(View.VISIBLE);
+        else holder.incoming.setVisibility(View.VISIBLE);
     }
 
     @Override
