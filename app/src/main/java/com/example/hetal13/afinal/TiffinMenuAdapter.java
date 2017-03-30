@@ -1,5 +1,6 @@
 package com.example.hetal13.afinal;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
@@ -86,6 +87,14 @@ public class TiffinMenuAdapter extends RecyclerView.Adapter<TiffinMenuAdapter.Co
                 Toast.makeText(context,position+"Removed",Toast.LENGTH_LONG).show();
             }
         });
+        holder.editmenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TiffinMenuFragment Tiffinfragment=new TiffinMenuFragment();
+                android.app.FragmentManager fm = ((Activity) context).getFragmentManager();
+                Tiffinfragment.show(fm, "menu");
+            }
+        });
     }
 
     @Override
@@ -94,7 +103,7 @@ public class TiffinMenuAdapter extends RecyclerView.Adapter<TiffinMenuAdapter.Co
     }
     public static class ContactView extends RecyclerView.ViewHolder{
         TextView name,email;
-        ImageButton deletemenu;
+        ImageButton deletemenu,editmenu;
 
         ArrayList<TiffinMenuPojo> contacts = new ArrayList<TiffinMenuPojo>();
         Context context;
@@ -107,7 +116,7 @@ public class TiffinMenuAdapter extends RecyclerView.Adapter<TiffinMenuAdapter.Co
             name=(TextView)view.findViewById(R.id.category);
             email=(TextView)view.findViewById(R.id.menu);
             deletemenu= (ImageButton) view.findViewById(R.id.deletemenu);
-
+            editmenu= (ImageButton) view.findViewById(R.id.editmenu);
 
 
 

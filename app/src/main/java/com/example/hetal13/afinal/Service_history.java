@@ -25,7 +25,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Service_history extends Navigation {
     RecyclerView recyclerView;
@@ -84,14 +87,24 @@ public class Service_history extends Navigation {
                         String email=jsonObject.getString("email");
                         String mobile=jsonObject.getString("phone");
                         int flag=Integer.parseInt(jsonObject.getString("way"));
-
-//                        TextDrawable drawable1=TextDrawable.builder().buildRound(String.valueOf(name.toUpperCase().charAt(0)),Color.parseColor("#701b46"));
-                  final   TextDrawable drawable1 = TextDrawable.builder()
+                        String timing = jsonObject.getString("timing");
+                        SimpleDateFormat dt = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+                        Date date = dt.parse(timing);
+                        SimpleDateFormat dt1 = new SimpleDateFormat("dd/MM/yyyy");
+                        Log.v("timingDate", dt1.format(date));
+                        String timeDate = dt1.format(date);
+                        dt1 = new SimpleDateFormat("HH:mm");
+                        Log.v("timingTime", dt1.format(date));
+                        String time = dt1.format(date);
+                        Log.v("timing", String.valueOf(date));
+                        final TextDrawable drawable1 = TextDrawable.builder()
                                 .buildRound(letter, generator.getRandomColor());
-
-                        HistoryPojo historyPojo=new HistoryPojo(drawable1,name,email,mobile,flag);
+                        HistoryPojo historyPojo = new HistoryPojo(drawable1, name, email, mobile, flag, timeDate, time);
                         arrayList.add(historyPojo);
+
                     } catch (JSONException e) {
+                        e.printStackTrace();
+                    } catch (ParseException e) {
                         e.printStackTrace();
                     }
 

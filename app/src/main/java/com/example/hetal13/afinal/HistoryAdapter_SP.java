@@ -60,7 +60,7 @@ public class HistoryAdapter_SP extends RecyclerView.Adapter<HistoryAdapter_SP.Co
         Random rnd = new Random();
         int color = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
         DisplayMetrics displayMetrics=new DisplayMetrics();
-        android.view.ViewGroup.LayoutParams layoutParams=holder.img_id.getLayoutParams();
+        ViewGroup.LayoutParams layoutParams=holder.img_id.getLayoutParams();
         ((Activity)context).getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         int height=displayMetrics.heightPixels;
         int width=displayMetrics.widthPixels;
@@ -90,6 +90,8 @@ public class HistoryAdapter_SP extends RecyclerView.Adapter<HistoryAdapter_SP.Co
         holder.img_id.setImageDrawable(contact.getImg_id());
         holder.name.setText(contact.getName());
         holder.mobile.setText(contact.getMobile());
+        holder.tvDate.setText(contact.getDate());
+        holder.tvTime.setText(contact.getTime());
         if (flag ==1) holder.incoming.setVisibility(View.VISIBLE);
         else holder.outgoing.setVisibility(View.VISIBLE);
     }
@@ -100,7 +102,7 @@ public class HistoryAdapter_SP extends RecyclerView.Adapter<HistoryAdapter_SP.Co
     }
     public static class ContactView extends RecyclerView.ViewHolder implements RecyclerView.OnClickListener{
         ImageView img_id;
-        TextView name,mobile;
+        TextView name,mobile,tvDate,tvTime;
         ImageButton email;
         ImageView incoming,outgoing;
         ArrayList<HistoryPojo> contacts = new ArrayList<HistoryPojo>();
@@ -116,7 +118,8 @@ public class HistoryAdapter_SP extends RecyclerView.Adapter<HistoryAdapter_SP.Co
             mobile=(TextView) view.findViewById(R.id.person_contact);
             incoming= (ImageView) view.findViewById(R.id.incoming);
             outgoing=(ImageView)view.findViewById(R.id.outgoing);
-
+            tvDate= (TextView) view.findViewById(R.id.callDate);
+            tvTime= (TextView) view.findViewById(R.id.callTime);
         }
         @Override
         public  void onClick(View v){
@@ -124,7 +127,7 @@ public class HistoryAdapter_SP extends RecyclerView.Adapter<HistoryAdapter_SP.Co
             HistoryPojo contact = this.contacts.get(position);
             Log.v("here","ContactAdapter");
             Intent callIntent = new Intent(Intent.ACTION_DIAL);
-            callIntent.setData(Uri.parse("tel:"+Uri.encode("7041764049".trim())));
+            callIntent.setData(Uri.parse("tel:"+Uri.encode(contact.getMobile())));
             callIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             v.getContext().startActivity(callIntent);
         }

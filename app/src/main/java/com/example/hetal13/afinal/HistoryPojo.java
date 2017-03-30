@@ -8,18 +8,45 @@ import com.amulyakhare.textdrawable.TextDrawable;
 
 public class HistoryPojo  {
 
-    private String email,mobile,name;
+    private String email,mobile,name,date,time;
     private TextDrawable img_id;
     private int flag;
 
-    public HistoryPojo(TextDrawable img_id, String name, String email, String mobile,int flag)
-    {
-        this.setFlag(flag);
-        this.setImg_id(img_id);
-        this.setName(name);
-        this.setEmail(email);
-        this.setMobile(mobile);
+    public String getDate() {
+        return date;
     }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public HistoryPojo(TextDrawable img_id,String name, String email, String mobile,   int flag,String date, String time) {
+        this.email = email;
+        this.mobile = mobile;
+        this.name = name;
+        this.date = date;
+        this.time = time;
+        this.img_id = img_id;
+        this.flag = flag;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+//    public HistoryPojo(TextDrawable img_id, String name, String email, String mobile, int flag)
+//    {
+//        this.setFlag(flag);
+//        this.setImg_id(img_id);
+//        this.setName(name);
+//        this.setEmail(email);
+//        this.setMobile(mobile);
+//
+//    }
     public int getFlag() {
         return flag;}
 

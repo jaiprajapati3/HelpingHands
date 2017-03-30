@@ -59,7 +59,7 @@ public class Recycle_Cat_Details extends AppCompatActivity {
         setContentView(R.layout.activity_recycle__cat__details);
         toolbar_detail= (Toolbar) findViewById(R.id.toolbar_rec);
         setSupportActionBar(toolbar_detail);
-        getSupportActionBar().setTitle("ServiceProvider");
+     //   getSupportActionBar().setTitle("ServiceProvider");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
        /* getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -78,6 +78,45 @@ public class Recycle_Cat_Details extends AppCompatActivity {
         // Intent intent;
         skill_id = String.valueOf(getIntent().getExtras().get("skill_id"));
         Log.v("Hello", skill_id);
+        String Tooltitle;
+        switch (skill_id){
+            case "1":
+            {
+                Tooltitle="PG";
+                break;
+            }
+            case "2":
+            {
+                Tooltitle="Tiffin Detail";
+                break;
+            }
+            case "3":
+            {
+                Tooltitle="Maid";
+                break;
+            }
+            case "4":
+            {
+                Tooltitle="Contractor";
+                break;
+            }
+            case "5":
+            {
+                Tooltitle="Mechanic";
+                break;
+            }
+            case "6":
+            {
+                Tooltitle="Security Guard";
+                break;
+            }
+            default:{
+                Tooltitle="Driver";
+            }
+        }
+        getSupportActionBar().setTitle(Tooltitle);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         // Take area_id from the sharedPreference
         area_id = 1;
         Calendar c = Calendar.getInstance();

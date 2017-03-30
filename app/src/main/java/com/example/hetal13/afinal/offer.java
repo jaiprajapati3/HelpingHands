@@ -2,17 +2,23 @@ package com.example.hetal13.afinal;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 
 public class offer extends Navigation {
 Toolbar toolbar_offer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         //LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         //inflate your activity layout here!
@@ -23,7 +29,13 @@ Toolbar toolbar_offer;
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Offer");
-
+//        ImageView imageView = (ImageView)findViewById(R.id.hetal);
+//
+//        Bitmap avatar = BitmapFactory.decodeResource(getResources(), R.drawable.hetal);
+//        RoundedBitmapDrawable roundDrawable = RoundedBitmapDrawableFactory.create(getResources(), avatar);
+//        roundDrawable.setCircular(true);
+//        imageView.setImageDrawable(roundDrawable);
+//        RoundImage(R.drawable.hetal,R.id.hetal);
 
         /*setContentView(R.layout.activity_offer);
         toolbar_offer=(Toolbar)findViewById(R.id.toolbar);
@@ -32,6 +44,15 @@ Toolbar toolbar_offer;
 
 
     }
+//    public  void RoundImage(int DrawableId,int ImageId){
+//        ImageView imageView = (ImageView)findViewById(ImageId);
+//
+//        Bitmap avatar = BitmapFactory.decodeResource(getResources(), DrawableId);
+//        RoundedBitmapDrawable roundDrawable = RoundedBitmapDrawableFactory.create(getResources(), avatar);
+//        roundDrawable.setCircular(true);
+//        imageView.setImageDrawable(roundDrawable);
+//
+//    }
   /*  public void onBackPressed()
     {
         Intent i_offer=new Intent(offer.this,Home.class);
@@ -51,7 +72,6 @@ Toolbar toolbar_offer;
       }
       return super.onOptionsItemSelected(item);
   }
-
     @Override
     public void onBackPressed() {
         super.onBackPressed();

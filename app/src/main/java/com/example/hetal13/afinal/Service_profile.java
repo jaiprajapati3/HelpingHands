@@ -128,6 +128,7 @@ public class Service_profile extends Navigation implements View.OnClickListener 
                     maidcost.setFocusable(true);
                 }
             });
+
         }
         else if(user_type.equals("4")){
             pglayout.setVisibility(View.INVISIBLE);

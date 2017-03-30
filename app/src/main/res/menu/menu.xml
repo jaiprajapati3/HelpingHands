@@ -12,7 +12,7 @@
     <item
         android:id="@+id/Edit"
         android:title="Profile"
-        android:icon="@drawable/customerservice"
+        android:icon="@drawable/profile"
         >
     </item>
     <item
@@ -37,7 +37,7 @@
     <item
         android:id="@+id/SP_profile"
         android:title="Profile"
-        android:icon="@drawable/edit"
+        android:icon="@drawable/profile"
         ></item>
 
 

@@ -95,7 +95,8 @@ public class Service_CatAdapter extends RecyclerView.Adapter<Service_CatAdapter.
             Intent intent=new Intent(this.context,Recycle_Cat_Details.class);
             intent.putExtra("ServiceName",service_listPojo.getCatname());
             intent.putExtra("skill_id",service_listPojo.getId());
-            this.context.startActivity(intent);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            mContext.startActivity(intent);
 
 
         }

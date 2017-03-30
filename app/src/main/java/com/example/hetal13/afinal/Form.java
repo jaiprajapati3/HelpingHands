@@ -8,13 +8,11 @@ import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.graphics.Point;
-import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.CallLog;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -31,11 +29,9 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.animation.AlphaAnimation;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.ProgressBar;
@@ -44,24 +40,27 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-//import com.amulyakhare.textdrawable.TextDrawable;
 import com.amulyakhare.textdrawable.TextDrawable;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+
+//import com.amulyakhare.textdrawable.TextDrawable;
 
 public class Form extends AppCompatActivity {
 
-    ImageButton btnCall, send, button;
+    ImageButton btnCall, send, button,emailbutton;
     ListView listView;
     String sp_id;
     RatingBar ratingBar;
@@ -74,6 +73,7 @@ public class Form extends AppCompatActivity {
     RecyclerView recyclerView;
     RecyclerView.Adapter adapter;
     RecyclerView.LayoutManager layoutManager;
+    String Emailto;
     ArrayList<FormPojo> arrayList = new ArrayList<FormPojo>();
     private PopupWindow popupWindow;
 
@@ -84,7 +84,7 @@ public class Form extends AppCompatActivity {
         setContentView(R.layout.activity_form);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        toolbar.setTitle("Service Details");
+       // toolbar.setTitle("Service Details");
 
         //  final String[] name = new String[1];
         final String[] email = new String[1];
@@ -102,6 +102,7 @@ public class Form extends AppCompatActivity {
 
         ratingBar = (RatingBar) findViewById(R.id.formRating);
         sp_name = (TextView) findViewById(R.id.Sp_name);
+
         //sp_desc= (TextView) findViewById(R.id.Sp_Desc);
         sp_type = (TextView) findViewById(R.id.Sp_type);
         ImageView image = (ImageView) findViewById(R.id.image_view);
@@ -110,32 +111,35 @@ public class Form extends AppCompatActivity {
         try {
             JSONObject obj = new JSONObject(JsonString);
             name = obj.getString("name");
+            toolbar.setTitle(name);
+            getSupportActionBar().setTitle(name);
             String type = obj.getString("type");
+            Emailto=obj.getString("email");
             phone[0] = obj.getString("phone");
             sp_name.setText(name);
             sp_type.setText(type);
             char letter = name.charAt(0);
             TextDrawable drawable = TextDrawable.builder()
                     .buildRound(String.valueOf(letter).toUpperCase(), Color.parseColor("#701b46"));
-            DisplayMetrics displayMetrics=new DisplayMetrics();
-            android.view.ViewGroup.LayoutParams layoutParams=image.getLayoutParams();
+            DisplayMetrics displayMetrics = new DisplayMetrics();
+            ViewGroup.LayoutParams layoutParams = image.getLayoutParams();
             getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-            int height=displayMetrics.heightPixels;
-            int width=displayMetrics.widthPixels;
+            int height = displayMetrics.heightPixels;
+            int width = displayMetrics.widthPixels;
             int screenSize = getResources().getConfiguration().screenLayout &
                     Configuration.SCREENLAYOUT_SIZE_MASK;
 
             String toastMsg;
-            switch(screenSize) {
+            switch (screenSize) {
                 case Configuration.SCREENLAYOUT_SIZE_LARGE:
-                    layoutParams.width = (width/9)*3;
-                    layoutParams.height = (height/10)*2;
+                    layoutParams.width = (width / 9) * 3;
+                    layoutParams.height = (height / 10) * 2;
                     image.setLayoutParams(layoutParams);
                     toastMsg = "Large screen";
                     break;
                 case Configuration.SCREENLAYOUT_SIZE_NORMAL:
-                    layoutParams.width = (width/9)*3;
-                    layoutParams.height = (height/11)*2;
+                    layoutParams.width = (width / 9) * 3;
+                    layoutParams.height = (height / 11) * 2;
                     image.setLayoutParams(layoutParams);
                     toastMsg = "Normal screen";
                     break;
@@ -195,7 +199,6 @@ public class Form extends AppCompatActivity {
                     Log.v("java12", String.valueOf(rating));
                     rating = response.getDouble("rating");
                     ratingBar.setRating((float) rating);
-
                     sp_name.setText(name);
                     sp_type.setText(type);
                     Log.v("java12", sp_name.getText().toString());
@@ -265,6 +268,7 @@ public class Form extends AppCompatActivity {
         //image.setImageDrawable(drawable);
         button = (ImageButton) findViewById(R.id.comment);
         btnCall = (ImageButton) findViewById(R.id.call);
+        emailbutton= (ImageButton) findViewById(R.id.emailForm);
         PhoneCallListener phoneListener = new PhoneCallListener();
         TelephonyManager telephonyManager = (TelephonyManager) this
                 .getSystemService(Context.TELEPHONY_SERVICE);
@@ -272,6 +276,23 @@ public class Form extends AppCompatActivity {
         btnCall.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String email = MyApplication.getInstance().getPrefManager().getemail();
+                DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+                Date date = new Date();
+                //  System.out.println(dateFormat.format(date));
+                String url_call = UrlString.url_string + "/customer_history.php?email=" + email + "&to=" + sp_id + "&timing=" + date;
+                StringRequest stringRequest = new StringRequest(Request.Method.GET, url_call, new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.v("response",response);
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.v("Error", error.getMessage());
+                    }
+                });
+                MySingleton.getInstance(getApplicationContext()).addToRequestque(stringRequest);
                 Intent callIntent = new Intent(Intent.ACTION_CALL);
 
                 //sharedpreference
@@ -297,7 +318,15 @@ public class Form extends AppCompatActivity {
             }
 
         });
+        emailbutton.setOnClickListener(new View.OnClickListener() {
 
+            @Override
+            public void onClick(View v) {
+                Intent emailIntent = new Intent(Intent.ACTION_SENDTO);
+                emailIntent.setData(Uri.parse("mailto:" +Emailto));
+                v.getContext().startActivity(Intent.createChooser(emailIntent,"Send Mail to"));
+            }
+        });
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -310,20 +339,6 @@ public class Form extends AppCompatActivity {
         });
     }
 
-    public void DeleteCallLogByNumber(String number) {
-        String queryString = "NUMBER=" + number;
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_CALL_LOG) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            return;
-        }
-        this.getContentResolver().delete(CallLog.Calls.CONTENT_URI, queryString, null);
-    }
 
     public void onShowPopup(View v) {
 
