@@ -44,7 +44,7 @@
     <item
         android:id="@+id/SP_history"
         android:title="History"
-        android:icon="@drawable/history_1"
+        android:icon="@drawable/historynav"
         >
     </item>
 

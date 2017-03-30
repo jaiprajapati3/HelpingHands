@@ -206,5 +206,13 @@
         android:layout_height="0.5dp"
         android:layout_marginTop="5dp"
         android:background="#701b46"></View>
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/recycleOffer"
+        android:paddingTop="20dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp">
+    </android.support.v7.widget.RecyclerView>
 </LinearLayout>
 

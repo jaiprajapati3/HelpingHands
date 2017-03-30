@@ -114,7 +114,9 @@ for(String str: checkboxlist){
         setSupportActionBar(toolbar);
         navigationView = (NavigationView) findViewById(R.id.navigationview);
         View header=navigationView.getHeaderView(0);
-
+        navigationView.setItemIconTintList(null);
+        //navigationView.getMenu().getItem(0).setChecked(true);
+       // navigationView.setNavigationItemSelected(navigationView.getMenu().getItem(0));
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         username= (TextView)header. findViewById(R.id.username_nav);
         email= (TextView)header. findViewById(R.id.email_nav);
