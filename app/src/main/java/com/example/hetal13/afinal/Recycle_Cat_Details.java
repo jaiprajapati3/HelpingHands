@@ -211,12 +211,7 @@ public class Recycle_Cat_Details extends AppCompatActivity {
 
                 recyclerView.setHasFixedSize(true);
                 RecyclerView.LayoutManager mLayoutManager;
-                if(skill_id.equals("2")){
-                     mLayoutManager = new GridLayoutManager(Recycle_Cat_Details.this, 1);
-                }
-                else {
-                     mLayoutManager = new GridLayoutManager(Recycle_Cat_Details.this, 2);
-                }
+                mLayoutManager = new GridLayoutManager(Recycle_Cat_Details.this, 2);
                 recyclerView.setLayoutManager(mLayoutManager);
                 recyclerView.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(10), true));
                 recyclerView.setItemAnimator(new DefaultItemAnimator());

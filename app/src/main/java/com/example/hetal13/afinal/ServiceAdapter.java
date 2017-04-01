@@ -149,7 +149,7 @@ int drawable1=Integer.parseInt(drawable.toString());
             final String[] desc = new String[1];
             final  double[] rating=new  double[1];
             final JSONObject[] obj = new JSONObject[1];
-            String url_profile=UrlString.url_string+"/SpProfile.php?sp_id="+sp_id+"&timing="+timing;
+            String url_profile=UrlString.url_string+"/SpProfile.php?sp_id="+sp_id+"&timing="+timing+"&type=1";
             Log.e("url",url_profile);
             JsonObjectRequest jsonObjectRequest=new JsonObjectRequest(Request.Method.GET, url_profile, null, new Response.Listener<JSONObject>() {
                 @Override
@@ -160,7 +160,7 @@ int drawable1=Integer.parseInt(drawable.toString());
                         obj[0] =response;
                         Log.e("Json#", String.valueOf(obj[0]));
                         Intent intent=new Intent(context,Form.class);
-                       // intent.putExtra("desc",contact.getDesc());
+                        // intent.putExtra("desc",contact.getDesc());
                         intent.putExtra("sp_id",contact.getId());
                         intent.putExtra("JsonObj", String.valueOf(obj[0]));
                         Log.e("Json", String.valueOf(obj[0]));
@@ -182,13 +182,13 @@ int drawable1=Integer.parseInt(drawable.toString());
             });
             MySingleton.getInstance(context).addToRequestque(jsonObjectRequest);
 
-         //   MySingleton.getInstance(context).addToRequestque(jsonObjectRequest);
+            //   MySingleton.getInstance(context).addToRequestque(jsonObjectRequest);
             Log.e("Error#","After");
 //            Intent intent=new Intent(this.context,Form.class);
 //            intent.putExtra("desc",contact.getDesc());
 //            intent.putExtra("sp_id",contact.getId());
 //            Log.e("Json", String.valueOf(obj[0]));
-         //   Log.v("Js",name[0]);
+            //   Log.v("Js",name[0]);
 //            intent.putExtra("JsonObj", String.valueOf(obj[0]));
 
             //     intent.putExtra("thumbnail", String.valueOf(contact.getThumbnail()));

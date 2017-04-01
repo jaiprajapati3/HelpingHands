@@ -3,6 +3,7 @@ package com.example.hetal13.afinal;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +14,7 @@ import android.widget.Toast;
 
 public class Service_profile extends Navigation implements View.OnClickListener {
 
-    LinearLayout pglayout, driverlayout, mechaniclayout, tiffinlayout, securitylayout, maidlayout, contractorlayout;
+    CardView pglayout, driverlayout, mechaniclayout, tiffinlayout, securitylayout, maidlayout, contractorlayout;
     Button maidedit, pgedit, securityedit, mechanicedit, driveredit, tiffinedit, contractoredit, personaledit, save;
     EditText edname, edno, edemail, vacancyvalue, accostvalue, nonaccostvalue, tiffintype, tiffincost, tiffinmenu, contractorexp, contractorcost, maidexp, maidtime, maidcost, driverexp, drivercost, securityexp, securitytime, securitycost, mechanicexp, mechaniccost;
     boolean clicked;
@@ -35,13 +36,13 @@ public class Service_profile extends Navigation implements View.OnClickListener 
         user_type = (String) bundle.get("SP");
         Log.v("Selected SP:", user_type);
         //All layouts hide show over here
-        pglayout = (LinearLayout) findViewById(R.id.sp_profile_pglayout);
-        tiffinlayout = (LinearLayout) findViewById(R.id.sp_profile_tiffinlayout);
-        driverlayout = (LinearLayout) findViewById(R.id.sp_profile_driverlayout);
-        contractorlayout = (LinearLayout) findViewById(R.id.sp_profile_contractorlayout);
-        mechaniclayout = (LinearLayout) findViewById(R.id.sp_profile_mechaniclayout);
-        securitylayout = (LinearLayout) findViewById(R.id.sp_profile_securitylayout);
-        maidlayout = (LinearLayout) findViewById(R.id.sp_profile_maidlayout);
+        pglayout = (CardView) findViewById(R.id.cardprofilesppg);
+        tiffinlayout = (CardView) findViewById(R.id.cardprofilesptiffin);
+        driverlayout = (CardView) findViewById(R.id.cardprofilespdriver);
+        contractorlayout = (CardView) findViewById(R.id.cardprofilespcontractor);
+        mechaniclayout = (CardView) findViewById(R.id.cardprofilespmechanic);
+        securitylayout = (CardView) findViewById(R.id.cardprofilespsecurity);
+        maidlayout = (CardView) findViewById(R.id.cardprofilespmaid);
 
         maidedit = (Button) findViewById(R.id.maidedit);
         pgedit = (Button) findViewById(R.id.pgedit);
@@ -128,7 +129,6 @@ public class Service_profile extends Navigation implements View.OnClickListener 
                     maidcost.setFocusable(true);
                 }
             });
-
         }
         else if(user_type.equals("4")){
             pglayout.setVisibility(View.INVISIBLE);

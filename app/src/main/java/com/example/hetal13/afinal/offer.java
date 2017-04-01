@@ -7,14 +7,30 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import org.w3c.dom.Text;
+
+import java.util.ArrayList;
 
 public class offer extends Navigation {
 Toolbar toolbar_offer;
+    ImageView imgpgOffer;
+    RecyclerView recyclerView;
+    RecyclerView.Adapter adapter;
+    RecyclerView.LayoutManager layoutManager;
+    ArrayList<offerPojo> arrayList = new ArrayList<offerPojo>();
+    String SPname,serviceType,offerDesc;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +45,17 @@ Toolbar toolbar_offer;
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Offer");
+        recyclerView=(RecyclerView) findViewById(R.id.recycleOffer);
+        imgpgOffer= (ImageView) findViewById(R.id.imgpgOffer);
+        imgpgOffer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplication(),"Hello",Toast.LENGTH_LONG).show();
+            }
+        });
+        SPname="Hetal Shah";
+        serviceType="Contractor";
+        offerDesc="50% SALE on every Purchase";
 //        ImageView imageView = (ImageView)findViewById(R.id.hetal);
 //
 //        Bitmap avatar = BitmapFactory.decodeResource(getResources(), R.drawable.hetal);
@@ -41,7 +68,17 @@ Toolbar toolbar_offer;
         toolbar_offer=(Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar_offer);
         getSupportActionBar().setTitle("offer");*/
+        int i =0;
+        for (i=0;i<=15;i++) {
+            offerPojo offerPojo = new offerPojo(serviceType, SPname, offerDesc);
+            arrayList.add(offerPojo);
+        }
+        adapter = new offerAdapter(offer.this, arrayList);
 
+        recyclerView.setHasFixedSize(true);
+        layoutManager = new LinearLayoutManager(offer.this);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(adapter);
 
     }
 //    public  void RoundImage(int DrawableId,int ImageId){
