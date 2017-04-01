@@ -32,6 +32,7 @@ import java.util.Date;
  */
 
 public class TiffinMenuFragment extends DialogFragment {
+    int flag=1;
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         final AlertDialog.Builder alertdialog = new AlertDialog.Builder(getActivity());
@@ -43,13 +44,38 @@ public class TiffinMenuFragment extends DialogFragment {
         alertdialog.setCancelable(false);
 
         final EditText addmenu= (EditText) v.findViewById(R.id.et_addmenu);
+
         Button add= (Button) v.findViewById(R.id.bt_addmenu);
         ImageButton cancle= (ImageButton) v.findViewById(R.id.bt_canclemenu);
         final Spinner selectmenu= (Spinner) v.findViewById(R.id.sp_chooseMenu);
         ArrayAdapter adapter=new ArrayAdapter(getActivity(),android.R.layout.simple_spinner_item,getResources().getStringArray(R.array.menu));
         selectmenu.setAdapter(adapter);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
+        Bundle bundle=this.getArguments();
+        if (bundle!=null) {
+            if(bundle.containsKey("type")&& bundle.containsKey("menu")) {
+                Log.v("Menu12","Bundle");
+               String type=bundle.getString("type");
+                String menu=bundle.getString("menu");
+                Log.v("menu",menu);
+                flag++;
+                Log.v("Menu",menu);
+                int position = 0;
+                addmenu.setText(menu);
+                if(type.equalsIgnoreCase("Lunch")){
+                    position=1;
+                }
+                 if(type.equalsIgnoreCase("Dinners")){
+                    position=2;
+                 }
+               Log.v("selected item",""+ selectmenu.getSelectedItemId());
+                selectmenu.setSelection(position);
+                //selectmenu.setSelection(position);
+            }
+        } else {
+            Log.i("Activity2 Log", "asdf is null");
 
+        }
         final AlertDialog dialog = alertdialog.create();
 
         add.setOnClickListener(new View.OnClickListener() {
@@ -65,8 +91,11 @@ public class TiffinMenuFragment extends DialogFragment {
                 Date alsoNow = Calendar.getInstance().getTime();
                 String nowAsString = new SimpleDateFormat("yyyy-MM-dd").format(now);
 
-                String url_menu=UrlString.url_string+"/tiffinf_Add.php?type="+type+"&menu="+menu+"&email="+email+"&timing="+nowAsString;
+                String url_menu=UrlString.url_string+"/tiffinf_Add.php?type="+type+"&menu="+menu+"&email="+email+"&timing="+nowAsString+"&flag="+flag;
                 url_menu = url_menu.replace(" ", "%20");
+                TiffinMenuPojo tiffinMenuPojo=new TiffinMenuPojo(type,menu,nowAsString);
+
+
                 Log.v("url",url_menu);
                 final StringRequest stringRequest=new StringRequest(Request.Method.GET, url_menu, new Response.Listener<String>() {
                     @Override
@@ -91,6 +120,7 @@ public class TiffinMenuFragment extends DialogFragment {
                 });
                 MySingleton.getInstance(getActivity().getApplicationContext()).addToRequestque(stringRequest);
                 dialog.dismiss();
+//                TiffinMenuAdapter.class.notifyAll();
 
             }
         });

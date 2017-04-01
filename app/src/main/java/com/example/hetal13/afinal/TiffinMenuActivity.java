@@ -71,7 +71,7 @@ ImageButton addTiffin,deletemenu;
         JsonArrayRequest jsonArrayRequest=new JsonArrayRequest(Request.Method.GET, url_menuList, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
-                Log.v("menu1",response.toString());
+                Log.v("menu112",response.toString());
                 for(int i=0;i<response.length();i++){
 
                     try {
@@ -94,6 +94,7 @@ ImageButton addTiffin,deletemenu;
                 layoutManager = new LinearLayoutManager(TiffinMenuActivity.this);
                 recyclerView.setLayoutManager(layoutManager);
                 recyclerView.setAdapter(adapter);
+
             }
         }, new Response.ErrorListener() {
             @Override
@@ -117,4 +118,11 @@ ImageButton addTiffin,deletemenu;
 
 
     }
+    @Override
+    public void onResume(){
+        super.onResume();
+      //  adapter.notifyAll();
+
+    }
+
 }
