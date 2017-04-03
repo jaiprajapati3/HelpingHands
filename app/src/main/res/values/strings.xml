@@ -6,6 +6,7 @@
     <string name="reg1_title">Enter Login Details</string>
     <string name="drawer_open">drawer_open</string>
     <string name="drawer_close">drawer_close</string>
+    <string name="login_register"><u><i>"Not a user ? Register Now"</i></u></string>
 
     <string-array name="categories">
         <item>Select Your Category</item>

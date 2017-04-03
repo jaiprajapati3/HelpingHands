@@ -123,7 +123,7 @@ public class Home extends Navigation {
         final int[] covers = new int[]{
                 R.drawable.pg11,
                 R.drawable.tiffin11,
-                R.drawable.maid11,
+                R.drawable.maid13,
                 R.drawable.contractor11,
                 R.drawable.mechanic,
                 R.drawable.s1,

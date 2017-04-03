@@ -87,7 +87,7 @@
         <activity
             android:name=".TiffinMenuActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".login"></activity>
+        <activity android:name=".Login"></activity>
     </application>
 
 </manifest>

@@ -47,14 +47,12 @@ public class AlertFragment extends DialogFragment {
         Button notnow = (Button) v.findViewById(R.id.notnow);
         final Button rate = (Button) v.findViewById(R.id.rate);
         alertdialog.setCancelable(false);
-
         LayerDrawable stars = (LayerDrawable) ratingBar.getProgressDrawable();
         stars.getDrawable(2).setColorFilter(getResources().getColor(R.color.colorPrimary), PorterDuff.Mode.SRC_ATOP);
         stars.getDrawable(0).setColorFilter(Color.GRAY, PorterDuff.Mode.SRC_ATOP);
         stars.getDrawable(1).setColorFilter(Color.GRAY, PorterDuff.Mode.SRC_ATOP);
         final AlertDialog dialog = alertdialog.create();
         TextView tv = (TextView) v.findViewById(R.id.tvheading);
-        //  tv.setText("Like the Service of "+name+"?");
         tv.setText("Like the Service of " + name + "?");
         String email = MyApplication.getInstance().getPrefManager().getemail();
         notnow.setOnClickListener(new View.OnClickListener() {

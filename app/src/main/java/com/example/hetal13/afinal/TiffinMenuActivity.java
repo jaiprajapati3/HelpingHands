@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
 
 import com.amulyakhare.textdrawable.TextDrawable;
 import com.android.volley.Request;
@@ -27,6 +28,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
+import static android.view.View.GONE;
+
 public class TiffinMenuActivity extends Navigation {
 ImageButton addTiffin,deletemenu;
     RecyclerView recyclerView;
@@ -34,6 +37,7 @@ ImageButton addTiffin,deletemenu;
     RecyclerView.LayoutManager layoutManager;
     String cat,menu;
     String url_menuList;
+    ProgressBar progressBar;
     ArrayList<TiffinMenuPojo> arrayList = new ArrayList<TiffinMenuPojo>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,9 +49,6 @@ ImageButton addTiffin,deletemenu;
         View contentView = inflater.inflate(R.layout.activity_tiffin_menu, null, false);
         drawerLayout.addView(contentView, 0);
         getSupportActionBar().setTitle("Menu Details");
-
-
-
         addTiffin= (ImageButton) findViewById(R.id.iv_addmenu);
         addTiffin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,7 +72,7 @@ ImageButton addTiffin,deletemenu;
         JsonArrayRequest jsonArrayRequest=new JsonArrayRequest(Request.Method.GET, url_menuList, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
-                Log.v("menu112",response.toString());
+                Log.v("menu1",response.toString());
                 for(int i=0;i<response.length();i++){
 
                     try {
@@ -90,11 +91,11 @@ ImageButton addTiffin,deletemenu;
                         e.printStackTrace();
                     }
                 }
+
                 recyclerView.setHasFixedSize(true);
                 layoutManager = new LinearLayoutManager(TiffinMenuActivity.this);
                 recyclerView.setLayoutManager(layoutManager);
                 recyclerView.setAdapter(adapter);
-
             }
         }, new Response.ErrorListener() {
             @Override
@@ -118,11 +119,4 @@ ImageButton addTiffin,deletemenu;
 
 
     }
-    @Override
-    public void onResume(){
-        super.onResume();
-      //  adapter.notifyAll();
-
-    }
-
 }

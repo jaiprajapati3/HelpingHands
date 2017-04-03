@@ -50,6 +50,7 @@ public class CallAdapterUser extends RecyclerView.Adapter<CallAdapterUser.Contac
     @Override
     public void onBindViewHolder(ContactView holder, int position) {
         HistoryPojo contact =contacts.get(position);
+        int flag=contact.getFlag();
         Random rnd = new Random();
         int color = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
        /* TextDrawable drawable = TextDrawable.builder()
@@ -62,7 +63,6 @@ public class CallAdapterUser extends RecyclerView.Adapter<CallAdapterUser.Contac
         int width=displayMetrics.widthPixels;
         int screenSize = context.getResources().getConfiguration().screenLayout &
                 Configuration.SCREENLAYOUT_SIZE_MASK;
-
         String toastMsg;
         switch(screenSize) {
             case Configuration.SCREENLAYOUT_SIZE_LARGE:
@@ -88,15 +88,11 @@ public class CallAdapterUser extends RecyclerView.Adapter<CallAdapterUser.Contac
 
 
         holder.name.setText(contact.getName());
-        holder.email.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent emailIntent = new Intent(Intent.ACTION_SENDTO);
-                emailIntent.setData(Uri.parse("mailto: hetalshah027@gmail.com"));
-                v.getContext().startActivity(Intent.createChooser(emailIntent,"Send Mail to"));
-            }
-        });
         holder.mobile.setText(contact.getMobile());
+        holder.tvDate.setText(contact.getDate());
+        holder.tvTime.setText(contact.getTime());
+        if (flag ==1) holder.outgoing.setVisibility(View.VISIBLE);
+        else holder.incoming.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -105,9 +101,8 @@ public class CallAdapterUser extends RecyclerView.Adapter<CallAdapterUser.Contac
     }
     public static class ContactView extends RecyclerView.ViewHolder{
         ImageView img_id;
-        TextView name,mobile;
-        ImageButton email;
-
+        TextView name,mobile,tvDate,tvTime;
+        ImageView incoming,outgoing;
         ArrayList<HistoryPojo> contacts = new ArrayList<HistoryPojo>();
         Context context;
         public ContactView(View view,Context context,ArrayList<HistoryPojo> contacts)
@@ -118,7 +113,10 @@ public class CallAdapterUser extends RecyclerView.Adapter<CallAdapterUser.Contac
             img_id=(ImageView) view.findViewById(R.id.img_user);
             name=(TextView)view.findViewById(R.id.tvnameuser);
             mobile=(TextView) view.findViewById(R.id.tvcontactuser);
-
+            incoming= (ImageView) view.findViewById(R.id.incoming);
+            outgoing=(ImageView)view.findViewById(R.id.outgoing);
+            tvDate= (TextView) view.findViewById(R.id.callDate);
+            tvTime= (TextView) view.findViewById(R.id.callTime);
         }
     }
 }

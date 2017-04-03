@@ -25,7 +25,6 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/tv_fromdate"
                     android:text="From:"
                     android:textColor="#000"
                     android:textSize="20sp"
@@ -33,7 +32,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:id="@+id/tv_todate"
+                    android:id="@+id/tv_fromdate"
                     android:drawableRight="@drawable/calendar"
                     android:hint="MM-DD-YYYY"
                     android:gravity="center"
@@ -46,7 +45,6 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/et_discription"
                     android:text="To:"
                     android:textColor="#000"
                     android:textSize="20sp"
@@ -55,6 +53,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="16dp"
+                    android:id="@+id/tv_todate"
                     android:drawableRight="@drawable/calendar"
                     android:hint="MM-DD-YYYY"
                     android:gravity="center" />
@@ -64,8 +63,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
+                android:id="@+id/et_discription"
                 android:hint="Enter offer description"
-                android:textSize="18sp"
+                            android:textSize="18sp"
                 android:maxLines="5"
                 android:textColor="#000" />
             <Button
@@ -95,10 +95,17 @@
             android:textColor="#000"
             android:layout_marginTop="8dp"
             android:textSize="18sp"/>
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/progressBarOffer"
+            android:layout_gravity="center"
+            android:theme="@style/CircularProgress"
+            style="@style/Widget.AppCompat.ProgressBar"/>
         <android.support.v7.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/recycle">
+            android:id="@+id/recycleOffer">
         </android.support.v7.widget.RecyclerView>
-    </LinearLayout>
+        </LinearLayout>
 </RelativeLayout>

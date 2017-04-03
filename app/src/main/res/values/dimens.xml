@@ -29,4 +29,5 @@
     <dimen name="ic_album_overflow_margin_top">10dp</dimen>
     <dimen name="nav_drawer_margin_offset">30dp</dimen>
     <dimen name="rounded_image_width_height">100dp</dimen>
+    <dimen name="profile_title">20dp</dimen>
 </resources>

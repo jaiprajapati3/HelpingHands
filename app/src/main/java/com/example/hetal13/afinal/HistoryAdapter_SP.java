@@ -1,11 +1,15 @@
 package com.example.hetal13.afinal;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.net.Uri;
+import android.support.v4.app.ActivityCompat;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
@@ -44,6 +48,7 @@ public class HistoryAdapter_SP extends RecyclerView.Adapter<HistoryAdapter_SP.Co
     public  HistoryAdapter_SP( Context context,ArrayList<HistoryPojo> contacts){
         this.contacts=contacts;
         this.context=context;
+
     }
     @Override
     public ContactView onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -86,14 +91,13 @@ public class HistoryAdapter_SP extends RecyclerView.Adapter<HistoryAdapter_SP.Co
             default:
                 toastMsg = "Screen size is neither large, normal or small";
         }
-
         holder.img_id.setImageDrawable(contact.getImg_id());
         holder.name.setText(contact.getName());
         holder.mobile.setText(contact.getMobile());
         holder.tvDate.setText(contact.getDate());
         holder.tvTime.setText(contact.getTime());
         if (flag ==1) holder.outgoing.setVisibility(View.VISIBLE);
-        else holder.incoming.setVisibility(View.VISIBLE);
+        if (flag==2)holder.incoming.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -105,6 +109,7 @@ public class HistoryAdapter_SP extends RecyclerView.Adapter<HistoryAdapter_SP.Co
         TextView name,mobile,tvDate,tvTime;
         ImageButton email;
         ImageView incoming,outgoing;
+        CardView cardViewHistorySP;
         ArrayList<HistoryPojo> contacts = new ArrayList<HistoryPojo>();
         Context context;
         public ContactView(View view,Context context,ArrayList<HistoryPojo> contacts)
@@ -120,16 +125,33 @@ public class HistoryAdapter_SP extends RecyclerView.Adapter<HistoryAdapter_SP.Co
             outgoing=(ImageView)view.findViewById(R.id.outgoing);
             tvDate= (TextView) view.findViewById(R.id.callDate);
             tvTime= (TextView) view.findViewById(R.id.callTime);
+            cardViewHistorySP= (CardView) view.findViewById(R.id.cardViewHistorySP);
+
         }
         @Override
         public  void onClick(View v){
+            Log.v("Hello","Hetal");
             int position = getAdapterPosition();
+
             HistoryPojo contact = this.contacts.get(position);
             Log.v("here","ContactAdapter");
-            Intent callIntent = new Intent(Intent.ACTION_DIAL);
+            Intent callIntent = new Intent(Intent.ACTION_CALL);
             callIntent.setData(Uri.parse("tel:"+Uri.encode(contact.getMobile())));
             callIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            v.getContext().startActivity(callIntent);
+            if (ActivityCompat.checkSelfPermission(v.getContext(), Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                // TODO: Consider calling
+                //    ActivityCompat#requestPermissions
+                // here to request the missing permissions, and then overriding
+                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                //                                          int[] grantResults)
+                // to handle the case where the user grants the permission. See the documentation
+                // for ActivityCompat#requestPermissions for more details.
+
+                return;
+            }
+            //startActivityForResult(callIntent, 2);
+
+            context.startActivity(callIntent);
         }
     }
 }

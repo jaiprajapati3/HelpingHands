@@ -683,45 +683,46 @@ Log.v("final1","Country");
 
 
                 } else {
-//                    String email=MyApplication.getInstance().getPrefManager().getemail();
-//                    url_login=UrlString.url_string+"/Login.php?email="+email;
-//                    int type=1;//1 for registration
-//                    JsonObjectRequest jsonObjectRequest=new JsonObjectRequest(Request.Method.GET, url_login, null, new Response.Listener<JSONObject>() {
-//                        @Override
-//                        public void onResponse(JSONObject response) {
-//                            try {
-//                                boolean success=response.getBoolean("success");
-//                                if(success==true){
-//                                    String fname=response.getString("fname");
-//                                    String lname=response.getString("lname");
-//                                    String areaId=response.getString("areaId");
-//                                    String url_type=response.getString("user_type");
-//                                    MyApplication.getInstance().getPrefManager().storearea(areaId);
-//                                    MyApplication.getInstance().getPrefManager().storefirstname(fname);
-//                                    MyApplication.getInstance().getPrefManager().storelastname(lname);
-//                                    MyApplication.getInstance().getPrefManager().storeuser_mode(url_type);
-//                                    if(url_type.equals("2")){
-//                                        Intent urlHome=new Intent(getBaseContext(),Home.class);
-//                                        startActivity(urlHome);
-//                                    }
-//                                    if(url_type.equals("3")){
-//                                        Intent urlHome=new Intent(getBaseContext(),Service_feedback.class);
-//                                        startActivity(urlHome);
-//                                    }
-//
-//                                }
-//                            } catch (JSONException e) {
-//                                e.printStackTrace();
-//                            }
-//
-//                        }
-//                    }, new Response.ErrorListener() {
-//                        @Override
-//                        public void onErrorResponse(VolleyError error) {
-//                            Log.v("Error",error.getMessage());
-//                        }
-//                    });
-//                    MySingleton.getInstance(this).addToRequestque(jsonObjectRequest);
+                    String email=MyApplication.getInstance().getPrefManager().getemail();
+                   //url_login=UrlString.url_string+"/Login.php?email="+email;
+                    url_login=UrlString.url_string+"/Login.php?email="+email+"&type="+user_type;
+                    int type=1;//1 for registration
+                    JsonObjectRequest jsonObjectRequest=new JsonObjectRequest(Request.Method.GET, url_login, null, new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            try {
+                                boolean success=response.getBoolean("success");
+                                if(success==true){
+                                    String fname=response.getString("fname");
+                                    String lname=response.getString("lname");
+                                    String areaId=response.getString("areaId");
+                                    String url_type=response.getString("user_type");
+                                    MyApplication.getInstance().getPrefManager().storearea(areaId);
+                                    MyApplication.getInstance().getPrefManager().storefirstname(fname);
+                                    MyApplication.getInstance().getPrefManager().storelastname(lname);
+                                    MyApplication.getInstance().getPrefManager().storeuser_mode(url_type);
+                                    if(url_type.equals("2")){
+                                        Intent urlHome=new Intent(getBaseContext(),Home.class);
+                                        startActivity(urlHome);
+                                    }
+                                    if(url_type.equals("3")){
+                                        Intent urlHome=new Intent(getBaseContext(),Service_feedback.class);
+                                        startActivity(urlHome);
+                                    }
+
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+                        }
+                    }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Log.v("Error",error.getMessage());
+                        }
+                    });
+                    MySingleton.getInstance(this).addToRequestque(jsonObjectRequest);
                    if (user_type.equalsIgnoreCase("Service Provider")) {
                         linearlayout1.setVisibility(View.INVISIBLE);
                         linearlayout2.setVisibility(View.INVISIBLE);

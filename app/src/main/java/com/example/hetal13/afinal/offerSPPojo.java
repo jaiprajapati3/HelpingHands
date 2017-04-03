@@ -4,6 +4,7 @@ package com.example.hetal13.afinal;
  */
 public class offerSPPojo {
     String date,desc;
+    int Id;
     public String getDate() {
         return date;
     }
@@ -16,8 +17,19 @@ public class offerSPPojo {
     public void setDesc(String desc) {
         this.desc = desc;
     }
-    public  offerSPPojo(String desc,String date){
+
+    public int getId() {
+        return Id;
+    }
+
+    public void setId(int id) {
+        Id = id;
+    }
+
+    public  offerSPPojo(String desc, String date, int Id){
         this.desc=desc;
+        this.Id=Id;
         this.date=date;
+
     }
 }

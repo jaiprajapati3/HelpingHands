@@ -176,6 +176,7 @@ public  void  offerList(int skillId){
                     String type=offer.getString("type");
                     String name=offer.getString("name");
                     String desc=offer.getString("desc");
+                    int Id= Integer.parseInt(offer.getString("Id"));
                     offerPojo offerPojo = new offerPojo(type, name, desc);
                     arrayList.add(offerPojo);
 

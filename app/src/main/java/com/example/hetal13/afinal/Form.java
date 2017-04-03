@@ -12,6 +12,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.CallLog;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -280,7 +281,10 @@ public class Form extends AppCompatActivity {
                 DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
                 Date date = new Date();
                 //  System.out.println(dateFormat.format(date));
-                String url_call = UrlString.url_string + "/customer_history.php?email=" + email + "&to=" + sp_id + "&timing=" + date;
+                String date2=dateFormat.format(date);
+                date2=date2.replace(" ","%20");
+                String url_call = UrlString.url_string + "/customer_history.php?email=" + email + "&to=" + sp_id + "&timing=" + date2;
+                Log.v("Url",url_call);
                 StringRequest stringRequest = new StringRequest(Request.Method.GET, url_call, new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -301,16 +305,7 @@ public class Form extends AppCompatActivity {
                 callIntent.setData(Uri.parse("tel:" + phone[0]));
                 Log.v("java12", String.valueOf(Uri.parse("tel:" + phone[0])));
 
-                if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-                    // TODO: Consider calling
-                    //    ActivityCompat#requestPermissions
-                    // here to request the missing permissions, and then overriding
-                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                    //                                          int[] grantResults)
-                    // to handle the case where the user grants the permission. See the documentation
-                    // for ActivityCompat#requestPermissions for more details.
-                    return;
-                }
+                 checkLocationPermission();
                 //startActivityForResult(callIntent, 2);
                 startActivity(callIntent);
                 Log.v("Phone", "demo");
@@ -322,9 +317,33 @@ public class Form extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                Intent emailIntent = new Intent(Intent.ACTION_SENDTO);
-                emailIntent.setData(Uri.parse("mailto:" +Emailto));
-                v.getContext().startActivity(Intent.createChooser(emailIntent,"Send Mail to"));
+//                Intent emailIntent = new Intent(Intent.ACTION_SENDTO);
+//                emailIntent.setData(Uri.parse("mailto:" +Emailto));
+//                v.getContext().startActivity(Intent.createChooser(emailIntent,"Send Mail to"));
+                //String email=MyApplication.getInstance().getPrefManager().getemail();
+                String url_block=UrlString.url_string+"/user_Block.php?email="+Emailto;
+                StringRequest stringRequest=new StringRequest(Request.Method.GET, url_block, new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                Log.v("response",response);
+                        try {
+                            JSONObject jsonObject=new JSONObject(response);
+                            String succ=jsonObject.getString("success");
+                            if(succ.equals("true")){
+                                Toast.makeText(getApplicationContext(),name+" is reported",Toast.LENGTH_LONG).show();
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                                          }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                });
+                MySingleton.getInstance(getApplicationContext()).addToRequestque(stringRequest);
             }
         });
         button.setOnClickListener(new View.OnClickListener() {
@@ -338,11 +357,7 @@ public class Form extends AppCompatActivity {
             }
         });
     }
-
-
     public void onShowPopup(View v) {
-
-
         LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
         View view = inflater.inflate(R.layout.comment_layout, null, false);
         progressBarLoadFeedback = (ProgressBar) view.findViewById(R.id.pbFeedback);
@@ -601,4 +616,36 @@ public class Form extends AppCompatActivity {
 
 
     }
+    // Meghna Call permission
+    public boolean checkLocationPermission() {
+        if (ContextCompat.checkSelfPermission(this,
+                Manifest.permission.CALL_PHONE)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            // Asking user if explanation is needed
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                    Manifest.permission.CALL_PHONE)) {
+
+                // Show an explanation to the user *asynchronously* -- don't block
+                // this thread waiting for the user's response! After the user
+                // sees the explanation, try again to request the permission.
+
+                //Prompt the user once explanation has been shown
+                ActivityCompat.requestPermissions(Form.this,
+                        new String[]{Manifest.permission.CALL_PHONE},
+                        1);
+
+
+            } else {
+                ActivityCompat.requestPermissions(Form.this,
+                        new String[]{Manifest.permission.GET_ACCOUNTS},
+                        1);
+
+            }
+            return false;
+        } else {
+            return true;
+        }
+    }
+
 }

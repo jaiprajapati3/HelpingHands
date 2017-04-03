@@ -8,55 +8,88 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="@drawable/background"
-    tools:context="com.example.hetal13.afinal.login">
+    tools:context="com.example.hetal13.afinal.Login">
 
     <ImageView
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
-        android:src="@drawable/logo"
+        android:src="@drawable/homelogo"
         android:id="@+id/img"/>
-    <Spinner
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/loginemail"
-        android:layout_marginTop="80dp"
+        android:layout_below="@+id/img"
+        android:orientation="vertical"
+        android:id="@+id/ll_loginblock"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/img"/>
-    <Spinner
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/loginuser"
-        android:layout_below="@+id/loginemail"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
-        android:entries="@array/categories"/>
-    <TableLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/loginuser"
-        android:layout_centerHorizontal="true"
-        >
+        android:layout_marginTop="20dp"
+        android:padding="10dp">
+        <!--<EditText-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:hint="Enter valid Email"-->
+            <!--android:gravity="center_horizontal"-->
+            <!--android:layout_weight="1"-->
+            <!--android:id="@+id/login_email"/>-->
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:hint="Helping Hands"
+            android:textColor="#000"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif-black"
+            android:id="@+id/loginlable"
+            android:editable="false"/>
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/input_layout_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <TableRow
-            android:layout_marginTop="60dp">
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:background="#701b46"
-                android:textColor="#ffffff"
-                android:text="Login"
-                android:id="@+id/login"
-                android:layout_marginRight="10dp"/>
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:background="#701b46"
-                android:textColor="#ffff"
-                android:id="@+id/signup"
-                android:text="Sign Up"/>
-        </TableRow>
-    </TableLayout>
+            <EditText
+                android:id="@+id/login_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:hint="Enter Email" />
+
+        </android.support.design.widget.TextInputLayout>
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/login_user"
+            android:layout_marginTop="40dp"
+            android:layout_weight="1"
+            android:entries="@array/categories"
+            android:gravity="center_horizontal"
+            />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="LOGIN"
+            android:background="@drawable/shape_button"
+            android:textColor="#ffffff"
+            android:id="@+id/login"
+            android:layout_marginTop="60dp"
+            android:layout_weight="1"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ll_loginblock"
+        android:layout_marginTop="30dp">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal|center"
+        android:textColor="#000"
+        android:textSize="15sp"
+        android:id="@+id/login_register"
+        android:contextClickable="true"
+        android:text="@string/login_register"/>
+    </LinearLayout>
 </RelativeLayout>
+

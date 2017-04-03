@@ -3,18 +3,16 @@ package com.example.hetal13.afinal;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 public class Service_profile extends Navigation implements View.OnClickListener {
 
-    CardView pglayout, driverlayout, mechaniclayout, tiffinlayout, securitylayout, maidlayout, contractorlayout;
+    LinearLayout pglayout, driverlayout, mechaniclayout, tiffinlayout, securitylayout, maidlayout, contractorlayout;
     Button maidedit, pgedit, securityedit, mechanicedit, driveredit, tiffinedit, contractoredit, personaledit, save;
     EditText edname, edno, edemail, vacancyvalue, accostvalue, nonaccostvalue, tiffintype, tiffincost, tiffinmenu, contractorexp, contractorcost, maidexp, maidtime, maidcost, driverexp, drivercost, securityexp, securitytime, securitycost, mechanicexp, mechaniccost;
     boolean clicked;
@@ -23,12 +21,12 @@ public class Service_profile extends Navigation implements View.OnClickListener 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-    //    setContentView(R.layout.activity_service_profile);
+        //    setContentView(R.layout.activity_service_profile);
         LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         //inflate your activity layout here!
         View contentView = inflater.inflate(R.layout.activity_service_profile, null, false);
-       drawerLayout.addView(contentView, 0);
+        drawerLayout.addView(contentView, 0);
         getSupportActionBar().setTitle("Service profile");
 
         Intent i = getIntent();
@@ -36,13 +34,14 @@ public class Service_profile extends Navigation implements View.OnClickListener 
         user_type = (String) bundle.get("SP");
         Log.v("Selected SP:", user_type);
         //All layouts hide show over here
-        pglayout = (CardView) findViewById(R.id.cardprofilesppg);
-        tiffinlayout = (CardView) findViewById(R.id.cardprofilesptiffin);
-        driverlayout = (CardView) findViewById(R.id.cardprofilespdriver);
-        contractorlayout = (CardView) findViewById(R.id.cardprofilespcontractor);
-        mechaniclayout = (CardView) findViewById(R.id.cardprofilespmechanic);
-        securitylayout = (CardView) findViewById(R.id.cardprofilespsecurity);
-        maidlayout = (CardView) findViewById(R.id.cardprofilespmaid);
+
+        pglayout = (LinearLayout) findViewById(R.id.ll_serviceblockpg);
+        tiffinlayout = (LinearLayout) findViewById(R.id.ll_serviceblocktiffin);
+        driverlayout = (LinearLayout) findViewById(R.id.ll_serviceblockdriver);
+        contractorlayout = (LinearLayout) findViewById(R.id.ll_serviceblockcontractor);
+        mechaniclayout = (LinearLayout) findViewById(R.id.ll_serviceblockcontractor);
+        securitylayout = (LinearLayout) findViewById(R.id.ll_serviceblocksecurity);
+        maidlayout = (LinearLayout) findViewById(R.id.ll_serviceblockmaid);
 
         maidedit = (Button) findViewById(R.id.maidedit);
         pgedit = (Button) findViewById(R.id.pgedit);
@@ -58,6 +57,12 @@ public class Service_profile extends Navigation implements View.OnClickListener 
         edname = (EditText) findViewById(R.id.edname);
         edno = (EditText) findViewById(R.id.edno);
         edemail = (EditText) findViewById(R.id.edemail);
+
+        String name=MyApplication.getInstance().getPrefManager().getfirstname()+" "+MyApplication.getInstance().getPrefManager().getlastname();
+        edname.setText(name);
+        edno.setText(MyApplication.getInstance().getPrefManager().getphoneno());
+        edemail.setText(MyApplication.getInstance().getPrefManager().getemail());
+
 
         vacancyvalue = (EditText) findViewById(R.id.vacancyvalue);
         accostvalue = (EditText) findViewById(R.id.accostvalue);
@@ -84,7 +89,7 @@ public class Service_profile extends Navigation implements View.OnClickListener 
         mechanicexp = (EditText) findViewById(R.id.mechanicexp);
         mechaniccost = (EditText) findViewById(R.id.mechaniccost);
 
-        if(user_type.equals("1")){
+        if (user_type.equals("1")) {
             pglayout.setVisibility(View.VISIBLE);
             pgedit.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -97,9 +102,12 @@ public class Service_profile extends Navigation implements View.OnClickListener 
                     nonaccostvalue.setFocusable(true);
                 }
             });
-
-        }
-        else if(user_type.equals("2")) {
+            String detail = MyApplication.getInstance().getPrefManager().getPGdetails();
+            final String[] spDetail = detail.split("@");
+            vacancyvalue.setText(spDetail[1]);
+            accostvalue.setText(spDetail[3]);
+            nonaccostvalue.setText(spDetail[5]);
+        } else if (user_type.equals("2")) {
             pglayout.setVisibility(View.INVISIBLE);
             tiffinlayout.setVisibility(View.VISIBLE);
             tiffinedit.setOnClickListener(new View.OnClickListener() {
@@ -113,8 +121,12 @@ public class Service_profile extends Navigation implements View.OnClickListener 
                     tiffinmenu.setFocusable(true);
                 }
             });
-        }
-        else if(user_type.equals("3")){
+            String detail = MyApplication.getInstance().getPrefManager().getTiffindetails();
+            final String[] spDetail = detail.split("@");
+            tiffintype.setText(spDetail[0]);
+            tiffincost.setText(spDetail[1]);
+            Log.v("Demo",detail);
+        } else if (user_type.equals("3")) {
             pglayout.setVisibility(View.INVISIBLE);
             tiffinlayout.setVisibility(View.INVISIBLE);
             maidlayout.setVisibility(View.VISIBLE);
@@ -129,8 +141,14 @@ public class Service_profile extends Navigation implements View.OnClickListener 
                     maidcost.setFocusable(true);
                 }
             });
-        }
-        else if(user_type.equals("4")){
+
+            String detail = MyApplication.getInstance().getPrefManager().getMaiddetails();
+            final String[] spDetail = detail.split("@");
+            maidexp.setText(spDetail[1]);
+            maidtime.setText(spDetail[5]);
+            maidcost.setText(spDetail[3]);
+
+        } else if (user_type.equals("4")) {
             pglayout.setVisibility(View.INVISIBLE);
             tiffinlayout.setVisibility(View.INVISIBLE);
             maidlayout.setVisibility(View.INVISIBLE);
@@ -144,9 +162,11 @@ public class Service_profile extends Navigation implements View.OnClickListener 
                     contractorcost.setFocusable(true);
                 }
             });
-
-        }
-        else if(user_type.equals("5")){
+            String detail = MyApplication.getInstance().getPrefManager().getContractordetails();
+            final String[] spDetail = detail.split("@");
+            contractorcost.setText(spDetail[3]);
+            contractorexp.setText(spDetail[1]);
+        } else if (user_type.equals("5")) {
             pglayout.setVisibility(View.INVISIBLE);
             tiffinlayout.setVisibility(View.INVISIBLE);
             maidlayout.setVisibility(View.INVISIBLE);
@@ -161,9 +181,11 @@ public class Service_profile extends Navigation implements View.OnClickListener 
                     mechaniccost.setFocusable(true);
                 }
             });
-
-        }
-        else if(user_type.equals("6")){
+            String detail = MyApplication.getInstance().getPrefManager().getMechanicdetails();
+            final String[] spDetail = detail.split("@");
+            mechaniccost.setText(spDetail[3]);
+            mechanicexp.setText(spDetail[1]);
+        } else if (user_type.equals("6")) {
             pglayout.setVisibility(View.INVISIBLE);
             tiffinlayout.setVisibility(View.INVISIBLE);
             maidlayout.setVisibility(View.INVISIBLE);
@@ -181,9 +203,12 @@ public class Service_profile extends Navigation implements View.OnClickListener 
                     securitycost.setFocusable(true);
                 }
             });
-
-        }
-        else if(user_type.equals("7")){
+            String detail = MyApplication.getInstance().getPrefManager().getSecurityGuarddetails();
+            final String[] spDetail = detail.split("@");
+            securitycost.setText(spDetail[3]);
+            securityexp.setText(spDetail[1]);
+            securitytime.setText(spDetail[6]);
+        } else if (user_type.equals("7")) {
             pglayout.setVisibility(View.INVISIBLE);
             tiffinlayout.setVisibility(View.INVISIBLE);
             maidlayout.setVisibility(View.INVISIBLE);
@@ -201,6 +226,10 @@ public class Service_profile extends Navigation implements View.OnClickListener 
                 }
             });
 
+            String detail = MyApplication.getInstance().getPrefManager().getDriverdetails();
+            final String[] spDetail = detail.split("@");
+            drivercost.setText(spDetail[3]);
+            driverexp.setText(spDetail[1]);
         }
         personaledit.setOnClickListener(new View.OnClickListener() {
             @Override

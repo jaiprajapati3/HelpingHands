@@ -5,10 +5,22 @@ package com.example.hetal13.afinal;
  */
 public class offerPojo {
              private String spType,spName,offerDesc;
-             public offerPojo(String spType, String spName, String offerDesc) {
+    private  int Id;
+
+    public int getId() {
+        return Id;
+    }
+
+    public void setId(int id) {
+        Id = id;
+    }
+
+    public offerPojo(String spType, String spName, String offerDesc) {
                      this.offerDesc = offerDesc;
                      this.spName = spName;
+
                      this.spType = spType;
+
                  }
          	public String getspType() {
                      return spType;
