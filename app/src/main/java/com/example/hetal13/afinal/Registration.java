@@ -70,7 +70,7 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
     JSONObject state, country;
     Spinner dropdown;
     private ArrayList<String> EmailListing;
-    ProgressBar progressBar;
+    ProgressBar progressBar,progressbarEmailCheck;
 
     EditText workexp_driver, cost_driver, workexp_meachanic, cost_mechanic, workexp_security, cost_security, workexp_maid, cost_maid;
     EditText workexp_contractor, cost_contractor;
@@ -85,17 +85,16 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        Log.v("test","registration");
         if (MyApplication.getInstance().getPrefManager().isfirsttime()) {
 
         } else {
-            launch();
+         //   launch();
         }
 
 
         setContentView(R.layout.activity_registration);
-
-
+        progressbarEmailCheck= (ProgressBar) findViewById(R.id.progressbarEmailCheck);
         linearlayout1 = (LinearLayout) findViewById(R.id.linearlayout1);
         linearlayout2 = (LinearLayout) findViewById(R.id.linearlayout2);
         linearlayout3 = (LinearLayout) findViewById(R.id.linearlayout3);
@@ -305,172 +304,7 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
         });
     }
 
-    /*private void SetAreaList() {
         JsonArrayRequest req = null;
-        final ProgressBar progressBar = (ProgressBar) findViewById(R.id.loadlist);
-        req = new JsonArrayRequest(Request.Method.GET, GetArea_url, null,
-                new Response.Listener<JSONArray>() {
-
-                    @Override
-                    public void onResponse(JSONArray response) {
-
-                        ArrayList<SpinnerModel> CustomListViewValuesArr2 = new ArrayList<SpinnerModel>();
-                        Log.v("#res_city", String.valueOf(response));
-                        progressBar.setVisibility(View.INVISIBLE);
-                        for (int i = 0; i < response.length(); i++) {
-                            Log.e("E2#  ", "1");
-                            try {
-                                JSONObject state = (JSONObject) response.get(i);
-                                Log.v("ans1", state.getString("area_name"));
-                                final SpinnerModel model = new SpinnerModel();
-                                model.setName(state.getString("area_name"));
-                                model.setId(state.getInt("area_id"));
-                                CustomListViewValuesArr2.add(model);
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-                        }
-
-                        adapter1 = new CustomAdapter(activity, R.layout.spinner_rows, CustomListViewValuesArr2);
-
-                        SpinnerExample3.setAdapter(adapter1);
-                    }
-                }, new Response.ErrorListener() {
-
-
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.v("# ERROR at area", "#here" + error.toString());
-                //Do what you want to do on error
-            }
-        });
-        MySingleton.getInstance(Registration.this).addToRequestque(req);
-    }
-
-    private void SetCityList() {
-        JsonArrayRequest req = null;
-        final ProgressBar progressBar = (ProgressBar) findViewById(R.id.loadlist);
-        req = new JsonArrayRequest(Request.Method.GET, GetCity_url, null,
-                new Response.Listener<JSONArray>() {
-
-                    @Override
-                    public void onResponse(JSONArray response) {
-                        ArrayList<SpinnerModel> CustomListViewValuesArr1 = new ArrayList<SpinnerModel>();
-                        Log.v("#res_city", String.valueOf(response));
-                        progressBar.setVisibility(View.INVISIBLE);
-                        for (int i = 0; i < response.length(); i++) {
-                            Log.e("E2#  ", "1");
-                            try {
-                                JSONObject state = (JSONObject) response.get(i);
-                                Log.v("ans1", state.getString("city_name"));
-                                final SpinnerModel model = new SpinnerModel();
-                                model.setName(state.getString("city_name"));
-                                model.setId(state.getInt("city_id"));
-                                CustomListViewValuesArr1.add(model);
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                        adapter1 = new CustomAdapter(activity, R.layout.spinner_rows, CustomListViewValuesArr1);
-                        SpinnerExample2.setAdapter(adapter1);
-                    }
-                }, new Response.ErrorListener() {
-
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.v("# ERROR at city", "#here" + error.toString());
-                //Do what you want to do on error
-            }
-        });
-        MySingleton.getInstance(Registration.this).addToRequestque(req);
-    }
-
-    private void SetStateList() {
-        JsonArrayRequest req = null;
-        final ProgressBar progressBar = (ProgressBar) findViewById(R.id.loadlist);
-
-        //progressBar.setVisibility(View.VISIBLE);
-        req = new JsonArrayRequest(Request.Method.GET, GetState_url, null,
-                new Response.Listener<JSONArray>() {
-
-                    @Override
-                    public void onResponse(JSONArray response) {
-
-                        ArrayList<SpinnerModel> CustomListViewValuesArr1 = new ArrayList<SpinnerModel>();
-                        Log.v("#res1", String.valueOf(response));
-                        progressBar.setVisibility(View.INVISIBLE);
-
-                        //              progressBar.setVisibility(View.GONE);
-
-                        for (int i = 0; i < response.length(); i++) {
-
-                            Log.e("E2#  ", "1");
-                            try {
-                                JSONObject state = (JSONObject) response.get(i);
-                                Log.v("ans1", state.getString("state_name"));
-                                final SpinnerModel model = new SpinnerModel();
-                                model.setName(state.getString("state_name"));
-                                model.setId(state.getInt("state_id"));
-                                CustomListViewValuesArr1.add(model);
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                        adapter1 = new CustomAdapter(activity, R.layout.spinner_rows, CustomListViewValuesArr1);
-                        SpinnerExample1.setAdapter(adapter1);
-                    }
-                }, new Response.ErrorListener() {
-
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.v("# ERROR at state", "#here" + error.toString());
-                //Do what you want to do on error
-            }
-        });
-        MySingleton.getInstance(Registration.this).addToRequestque(req);
-    }
-
-    private void setListData() {
-        //for country
-        // final ProgressBar progressBar= (ProgressBar) findViewById(R.id.loadlist);
-        //progressBar.setVisibility(View.VISIBLE);
-        final ProgressBar progressBar = (ProgressBar) findViewById(R.id.loadlist);
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(url, new Response.Listener<JSONArray>() {
-            @Override
-            public void onResponse(JSONArray response) {
-
-                Log.v("#response", String.valueOf(response));
-                progressBar.setVisibility(View.GONE);
-                progressBar.setVisibility(View.INVISIBLE);
-                for (int i = 0; i < response.length(); i++) {
-                    Log.e("E2#  ", "1");
-                    try {
-                        JSONObject country = (JSONObject) response.get(i);
-                        Log.v("ans", country.getString("country_name"));
-                        final SpinnerModel model = new SpinnerModel();
-                        model.setName(country.getString("country_name"));
-                        model.setId(country.getInt("country_id"));
-                        CustomListViewValuesArr.add(model);
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }
-                adapter = new CustomAdapter(activity, R.layout.spinner_rows, CustomListViewValuesArr);
-                SpinnerExample.setAdapter(adapter);
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.v("# ERROR at country", "here");
-            }
-
-
-        });
-        MySingleton.getInstance(Registration.this).addToRequestque(jsonArrayRequest);
-    }
-
-    //end bhoomi*/
-
     private void SetAreaList() {
         //     Log.v("ResponseCountry","hello");
         Log.v("java","ARea");
@@ -683,33 +517,89 @@ Log.v("final1","Country");
 
 
                 } else {
+
                     String email=MyApplication.getInstance().getPrefManager().getemail();
-                   //url_login=UrlString.url_string+"/Login.php?email="+email;
                     url_login=UrlString.url_string+"/Login.php?email="+email+"&type="+user_type;
                     int type=1;//1 for registration
-                    JsonObjectRequest jsonObjectRequest=new JsonObjectRequest(Request.Method.GET, url_login, null, new Response.Listener<JSONObject>() {
+//                    JsonObjectRequest jsonObjectRequest=new JsonObjectRequest(Request.Method.GET, url_login, null, new Response.Listener<JSONObject>() {
+//                        @Override
+//                        public void onResponse(JSONObject response) {
+//                            try {
+//                                Log.v("test", String.valueOf(response));
+//                                boolean success=response.getBoolean("success");
+//                                if(success==true){
+//                                    String fname=response.getString("fname");
+//                                    String lname=response.getString("lname");
+//                                    String areaId=response.getString("areaId");
+//                                    String url_type=response.getString("user_type");
+//                                    String skillId=response.getString("skill_id");
+//                                    MyApplication.getInstance().getPrefManager().storearea(areaId);
+//                                    MyApplication.getInstance().getPrefManager().storefirstname(fname);
+//                                    MyApplication.getInstance().getPrefManager().storelastname(lname);
+//                                    MyApplication.getInstance().getPrefManager().storeuser_mode(url_type);
+//                                    MyApplication.getInstance().getPrefManager().storecheckbox(skillId);
+//                                    if(url_type.equals("User")){
+//                                        Log.v("test1","2");
+//                                        Intent urlHome=new Intent(getBaseContext(),Home.class);
+//                                        startActivity(urlHome);
+//                                    }
+//                                    if(url_type.equals("Service Provider")){
+//                                        Log.v("test1","3");
+//                                        Intent urlHome=new Intent(getBaseContext(),Service_feedback.class);
+//                                        startActivity(urlHome);
+//                                    }
+//
+//                                }
+//                            } catch (JSONException e) {
+//                                e.printStackTrace();
+//                            }
+//
+//                        }
+//                    }, new Response.ErrorListener() {
+//                        @Override
+//                        public void onErrorResponse(VolleyError error) {
+//                            Log.v("Error",error.getMessage());
+//                        }
+//                    });
+//                    MySingleton.getInstance(this).addToRequestque(jsonObjectRequest);
+                    JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url_login, null, new Response.Listener<JSONObject>() {
                         @Override
                         public void onResponse(JSONObject response) {
+                            progressbarEmailCheck.setVisibility(View.GONE);
                             try {
-                                boolean success=response.getBoolean("success");
-                                if(success==true){
-                                    String fname=response.getString("fname");
-                                    String lname=response.getString("lname");
-                                    String areaId=response.getString("areaId");
-                                    String url_type=response.getString("user_type");
+                                boolean success = response.getBoolean("success");
+
+                                Log.v("test", String.valueOf(success));
+                                if (success == true) {
+                                    String fname = response.getString("fname");
+                                    String lname = response.getString("lname");
+                                    String areaId = response.getString("areaId");
+
                                     MyApplication.getInstance().getPrefManager().storearea(areaId);
                                     MyApplication.getInstance().getPrefManager().storefirstname(fname);
                                     MyApplication.getInstance().getPrefManager().storelastname(lname);
-                                    MyApplication.getInstance().getPrefManager().storeuser_mode(url_type);
-                                    if(url_type.equals("2")){
-                                        Intent urlHome=new Intent(getBaseContext(),Home.class);
-                                        startActivity(urlHome);
-                                    }
-                                    if(url_type.equals("3")){
-                                        Intent urlHome=new Intent(getBaseContext(),Service_feedback.class);
-                                        startActivity(urlHome);
-                                    }
+                               //     MyApplication.getInstance().getPrefManager().storeemail(email);
 
+//    MyApplication.getInstance().getPrefManager().storeuser_mode(url_type);
+                                    MyApplication.getInstance().getPrefManager().storeuser_mode(user_type);
+                                    Log.v("test1", user_type);
+                                    if (user_type.equals("User")) {
+                                        Log.v("test11", user_type);
+                                        Intent urlHome = new Intent(getBaseContext(), Home.class);
+                                        startActivity(urlHome);
+                                        finish();
+                                    }
+                                    if (user_type.equalsIgnoreCase("Service Provider")) {
+                                        Log.v("test11", user_type);
+                                        String skillId = response.getString("skill_id");
+                                        MyApplication.getInstance().getPrefManager().storecheckbox(skillId);
+                                        Intent urlHome = new Intent(getBaseContext(), Service_feedback.class);
+                                        startActivity(urlHome);
+                                        finish();
+                                    }
+                                } else {
+                                    //Login failed
+                                    Toast.makeText(getApplicationContext(),"Login Failed",Toast.LENGTH_LONG).show();
                                 }
                             } catch (JSONException e) {
                                 e.printStackTrace();
@@ -719,11 +609,12 @@ Log.v("final1","Country");
                     }, new Response.ErrorListener() {
                         @Override
                         public void onErrorResponse(VolleyError error) {
-                            Log.v("Error",error.getMessage());
+                            Log.v("Error", error.getMessage());
                         }
                     });
-                    MySingleton.getInstance(this).addToRequestque(jsonObjectRequest);
-                   if (user_type.equalsIgnoreCase("Service Provider")) {
+                    MySingleton.getInstance(getApplicationContext()).addToRequestque(jsonObjectRequest);
+
+                    if (user_type.equalsIgnoreCase("Service Provider")) {
                         linearlayout1.setVisibility(View.INVISIBLE);
                         linearlayout2.setVisibility(View.INVISIBLE);
                         linearlayout3.setVisibility(View.VISIBLE);
@@ -1536,6 +1427,7 @@ Log.v("final1","Country");
 
     private void launch() {
         User_OR_ServiceProvider = MyApplication.getInstance().getPrefManager().getuser_mode();
+        Log.v("test",User_OR_ServiceProvider);
         if (User_OR_ServiceProvider.equalsIgnoreCase("Service Provider")) {
             Intent intent = new Intent(Registration.this, Service_feedback.class);
             startActivity(intent);
