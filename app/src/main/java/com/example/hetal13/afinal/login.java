@@ -1,5 +1,6 @@
 package com.example.hetal13.afinal;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -7,7 +8,9 @@ import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.util.Patterns;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -40,10 +43,19 @@ public class Login extends AppCompatActivity {
 //        loginLable.setClickable(false);
 //        loginLable.setEnabled(false);
         tvLogin= (TextView) findViewById(R.id.tvLogin);
-       //Typeface custom_font = Typeface.createFromAsset(getAssets(),"fonts/Billabong.ttf");
-        //tvLogin.setTypeface(Typeface.createFromAsset(getAssets(),"fonts/Billabong.ttf"));
+       Typeface custom_font = Typeface.createFromAsset(getBaseContext().getResources().getAssets(),"fonts/Allura-Regular.otf");
+        tvLogin.setTypeface(custom_font);
         final TextInputLayout input_layout_email = (TextInputLayout) findViewById(R.id.input_layout_email);
-        input_layout_email.setHint("Username");
+        input_layout_email.setHint("Email");
+        login_user.setOnTouchListener(new View.OnTouchListener() {
+
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                InputMethodManager imm=(InputMethodManager)getApplicationContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(login_email.getWindowToken(), 0);
+                return false;
+            }
+        }) ;
         //    Pass the intent to the registration page if not a user
         login_register.setOnClickListener(new View.OnClickListener() {
             @Override

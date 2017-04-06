@@ -12,7 +12,7 @@ import android.widget.LinearLayout;
 
 public class Service_profile extends Navigation implements View.OnClickListener {
 
-    LinearLayout pglayout, driverlayout, mechaniclayout, tiffinlayout, securitylayout, maidlayout, contractorlayout;
+    LinearLayout pglayout, driverlayout, mechaniclayout, tiffinlayout, securitylayout, maidlayout, contractorlayout,llMobileNo;
     Button maidedit, pgedit, securityedit, mechanicedit, driveredit, tiffinedit, contractoredit, personaledit, save;
     EditText edname, edno, edemail, vacancyvalue, accostvalue, nonaccostvalue, tiffintype, tiffincost, tiffinmenu, contractorexp, contractorcost, maidexp, maidtime, maidcost, driverexp, drivercost, securityexp, securitytime, securitycost, mechanicexp, mechaniccost;
     boolean clicked;
@@ -42,7 +42,6 @@ public class Service_profile extends Navigation implements View.OnClickListener 
         mechaniclayout = (LinearLayout) findViewById(R.id.ll_serviceblockcontractor);
         securitylayout = (LinearLayout) findViewById(R.id.ll_serviceblocksecurity);
         maidlayout = (LinearLayout) findViewById(R.id.ll_serviceblockmaid);
-
         maidedit = (Button) findViewById(R.id.maidedit);
         pgedit = (Button) findViewById(R.id.pgedit);
         driveredit = (Button) findViewById(R.id.driveredit);
@@ -95,6 +94,7 @@ public class Service_profile extends Navigation implements View.OnClickListener 
                 @Override
                 public void onClick(View view) {
                     vacancyvalue.setEnabled(true);
+                    vacancyvalue.requestFocus();
                     vacancyvalue.setFocusable(true);
                     accostvalue.setEnabled(true);
                     accostvalue.setFocusable(true);
@@ -114,6 +114,7 @@ public class Service_profile extends Navigation implements View.OnClickListener 
                 @Override
                 public void onClick(View view) {
                     tiffintype.setEnabled(true);
+                    tiffintype.requestFocus();
                     tiffintype.setFocusable(true);
                     tiffincost.setEnabled(true);
                     tiffincost.setFocusable(true);
@@ -134,6 +135,7 @@ public class Service_profile extends Navigation implements View.OnClickListener 
                 @Override
                 public void onClick(View view) {
                     maidexp.setEnabled(true);
+                    maidexp.requestFocus();
                     maidexp.setFocusable(true);
                     maidtime.setEnabled(true);
                     maidtime.setFocusable(true);
@@ -157,6 +159,7 @@ public class Service_profile extends Navigation implements View.OnClickListener 
                 @Override
                 public void onClick(View view) {
                     contractorexp.setEnabled(true);
+                    contractorexp.requestFocus();
                     contractorexp.setFocusable(true);
                     contractorcost.setEnabled(true);
                     contractorcost.setFocusable(true);
@@ -176,6 +179,7 @@ public class Service_profile extends Navigation implements View.OnClickListener 
                 @Override
                 public void onClick(View view) {
                     mechanicexp.setEnabled(true);
+                    mechanicexp.requestFocus();
                     mechanicexp.setFocusable(true);
                     mechaniccost.setEnabled(true);
                     mechaniccost.setFocusable(true);
@@ -196,6 +200,7 @@ public class Service_profile extends Navigation implements View.OnClickListener 
                 @Override
                 public void onClick(View view) {
                     securityexp.setEnabled(true);
+                    securityexp.requestFocus();
                     securityexp.setFocusable(true);
                     securitytime.setEnabled(true);
                     securitytime.setFocusable(true);
@@ -220,6 +225,7 @@ public class Service_profile extends Navigation implements View.OnClickListener 
                 @Override
                 public void onClick(View view) {
                     driverexp.setEnabled(true);
+                    driverexp.requestFocus();
                     driverexp.setFocusable(true);
                     drivercost.setEnabled(true);
                     drivercost.setFocusable(true);
@@ -234,8 +240,10 @@ public class Service_profile extends Navigation implements View.OnClickListener 
         personaledit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //llMobileNo.setFocusable(false);
                 edno.setEnabled(true);
-                edno.setFocusable(true);
+               // edno.setFocusable(true);
+                edno.requestFocus();
             }
         });
 
@@ -246,7 +254,6 @@ public class Service_profile extends Navigation implements View.OnClickListener 
         i_rating.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         i_rating.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         i_rating.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-
         startActivity(i_rating);
         return;
     }
