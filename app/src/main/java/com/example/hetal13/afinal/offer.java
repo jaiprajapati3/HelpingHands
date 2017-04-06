@@ -37,7 +37,7 @@ public class offer extends Navigation {
     RecyclerView recyclerView;
     RecyclerView.Adapter adapter;
     RecyclerView.LayoutManager layoutManager;
-
+    ProgressBar progressbarOffer;
     String SPname,serviceType,offerDesc;
 
     @Override
@@ -56,11 +56,13 @@ public class offer extends Navigation {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Offer");
         recyclerView=(RecyclerView) findViewById(R.id.recycleOffer);
+        progressbarOffer= (ProgressBar) findViewById(R.id.progressbarOffer);
         imgpgOffer= (ImageView) findViewById(R.id.imgpgOffer);
         imgpgOffer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplication(),"Hello",Toast.LENGTH_LONG).show();
+//                Toast.makeText(getApplication(),"Hello",Toast.LENGTH_LONG).show();
+                progressbarOffer.setVisibility(View.VISIBLE);
                 offerList(1);
             }
         });
@@ -68,6 +70,7 @@ public class offer extends Navigation {
         imgtiffin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                progressbarOffer.setVisibility(View.VISIBLE);
                 offerList(2);
             }
         });
@@ -75,6 +78,7 @@ public class offer extends Navigation {
         imgmaid.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                progressbarOffer.setVisibility(View.VISIBLE);
                 offerList(3);
             }
         });
@@ -82,6 +86,7 @@ public class offer extends Navigation {
         imgcontractor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                progressbarOffer.setVisibility(View.VISIBLE);
                 offerList(4);
             }
         });
@@ -89,6 +94,7 @@ public class offer extends Navigation {
         imgmech.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                progressbarOffer.setVisibility(View.VISIBLE);
                 offerList(5);
             }
         });
@@ -96,13 +102,15 @@ public class offer extends Navigation {
         imgsecurity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                progressbarOffer.setVisibility(View.VISIBLE);
                 offerList(6);
             }
         });
         ImageView imgdriver= (ImageView) findViewById(R.id.imgdriverOffer);
-        imgmech.setOnClickListener(new View.OnClickListener() {
+        imgdriver.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                progressbarOffer.setVisibility(View.VISIBLE);
                 offerList(7);
             }
         });
@@ -168,7 +176,7 @@ public  void  offerList(int skillId){
     JsonArrayRequest jsonArrayRequest=new JsonArrayRequest(Request.Method.GET, url_offer, null, new Response.Listener<JSONArray>() {
         @Override
         public void onResponse(JSONArray response) {
-
+            progressbarOffer.setVisibility(View.GONE);
             for(int i=0;i<response.length();i++){
                 try {
                     Log.v("resp", String.valueOf(response));
@@ -176,7 +184,7 @@ public  void  offerList(int skillId){
                     String type=offer.getString("type");
                     String name=offer.getString("name");
                     String desc=offer.getString("desc");
-                    int Id= Integer.parseInt(offer.getString("Id"));
+                    //int Id= Integer.parseInt(offer.getString("Id"));
                     offerPojo offerPojo = new offerPojo(type, name, desc);
                     arrayList.add(offerPojo);
 

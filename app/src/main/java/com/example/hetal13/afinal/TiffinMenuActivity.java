@@ -1,6 +1,7 @@
 package com.example.hetal13.afinal;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -123,6 +124,14 @@ ImageButton addTiffin,deletemenu;
         super.onResume();
       //  adapter.notifyAll();
 
+    }
+    public void onBackPressed() {
+        Intent i_rating = new Intent(TiffinMenuActivity.this, Service_feedback.class);
+        i_rating.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        i_rating.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        i_rating.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+        startActivity(i_rating);
+        return;
     }
 
 }

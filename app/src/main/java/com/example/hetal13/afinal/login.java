@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,6 +31,7 @@ public class Login extends AppCompatActivity {
     Spinner login_user;
     Button login;
     TextView login_register,tvLogin;
+    ProgressBar progressbarLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,11 +41,12 @@ public class Login extends AppCompatActivity {
         login_email = (EditText) findViewById(R.id.login_email);
         login_user = (Spinner) findViewById(R.id.login_user);
         login_register = (TextView) findViewById(R.id.login_register);
+        progressbarLogin = (ProgressBar) findViewById(R.id.progressbarLogin);
 //        loginLable = (EditText) findViewById(R.id.loginlable);
 //        loginLable.setClickable(false);
 //        loginLable.setEnabled(false);
         tvLogin= (TextView) findViewById(R.id.tvLogin);
-       Typeface custom_font = Typeface.createFromAsset(getBaseContext().getResources().getAssets(),"fonts/Allura-Regular.otf");
+       Typeface custom_font = Typeface.createFromAsset(getBaseContext().getResources().getAssets(),"fonts/Billabong.ttf");
         tvLogin.setTypeface(custom_font);
         final TextInputLayout input_layout_email = (TextInputLayout) findViewById(R.id.input_layout_email);
         input_layout_email.setHint("Email");
@@ -71,6 +74,7 @@ public class Login extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                progressbarLogin.setVisibility(View.VISIBLE);
                 final String spinner_value = (String) login_user.getSelectedItem();
                 Log.v("spinner", spinner_value);
                 final String email = String.valueOf(login_email.getText());
@@ -92,6 +96,7 @@ public class Login extends AppCompatActivity {
                 JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url_login, null, new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
+                        progressbarLogin.setVisibility(View.GONE);
                         try {
                             boolean success = response.getBoolean("success");
 
