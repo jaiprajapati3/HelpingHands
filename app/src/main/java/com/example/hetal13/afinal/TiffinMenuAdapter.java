@@ -3,6 +3,7 @@ package com.example.hetal13.afinal;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -48,7 +49,7 @@ public class TiffinMenuAdapter extends RecyclerView.Adapter<TiffinMenuAdapter.Co
 
     @Override
     public void onBindViewHolder(final ContactView holder, final int position) {
-         final TiffinMenuPojo contact =contacts.get(position);
+        final TiffinMenuPojo contact =contacts.get(position);
 
 
         holder.name.setText(contact.getCategory());
@@ -56,9 +57,10 @@ public class TiffinMenuAdapter extends RecyclerView.Adapter<TiffinMenuAdapter.Co
         holder.deletemenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            //    String email=MyApplication.getInstance().getPrefManager().getemail();
+                //    String email=MyApplication.getInstance().getPrefManager().getemail();
                 String email="vaidyameghna1996@gmail.com";
                 String url_delete=UrlString.url_string+"/tiffin_delete.php?email="+email+"&timing="+contact.getDate()+"&type="+contact.getCategory()+"&menu="+contact.getMenu();
+                url_delete=url_delete.replace(" ","%20");
                 Log.v("url",url_delete);
                 StringRequest stringRequest=new StringRequest(Request.Method.GET, url_delete, new Response.Listener<String>() {
                     @Override
@@ -91,6 +93,10 @@ public class TiffinMenuAdapter extends RecyclerView.Adapter<TiffinMenuAdapter.Co
             @Override
             public void onClick(View v) {
                 TiffinMenuFragment Tiffinfragment=new TiffinMenuFragment();
+                Bundle bundle = new Bundle();
+                bundle.putString("type",contact.getCategory());
+                bundle.putString("menu",contact.getMenu());
+                Tiffinfragment.setArguments(bundle);
                 android.app.FragmentManager fm = ((Activity) context).getFragmentManager();
                 Tiffinfragment.show(fm, "menu");
             }

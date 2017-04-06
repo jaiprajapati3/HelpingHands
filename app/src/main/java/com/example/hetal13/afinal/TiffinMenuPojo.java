@@ -8,14 +8,24 @@ import java.util.Date;
 
 public class TiffinMenuPojo {
     private String category,menu;
-    public String date;
+    private String date;
+    private int flag=0;
+
 
     public TiffinMenuPojo(String category, String menu,String date) {
         this.category = category;
         this.date=date;
         this.menu=menu;
+
     }
 
+    public void setFlag(int flag){
+        this.flag=flag;
+    }
+
+    public int getFlag(){
+        return flag;
+    }
     public String getDate() {
         return date;
     }

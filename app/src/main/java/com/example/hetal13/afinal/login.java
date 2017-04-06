@@ -1,6 +1,7 @@
 package com.example.hetal13.afinal;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -22,10 +23,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class Login extends AppCompatActivity {
-    EditText login_email, loginLable;
+    EditText login_email;
     Spinner login_user;
     Button login;
-    TextView login_register;
+    TextView login_register,tvLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,11 +36,12 @@ public class Login extends AppCompatActivity {
         login_email = (EditText) findViewById(R.id.login_email);
         login_user = (Spinner) findViewById(R.id.login_user);
         login_register = (TextView) findViewById(R.id.login_register);
-        loginLable = (EditText) findViewById(R.id.loginlable);
-        loginLable.setClickable(false);
-        loginLable.setEnabled(false);
-//        Typeface custom_font = Typeface.createFromAsset(getAssets(),"assests/fonts/Billabong.ttf");
-//        loginLable.setTypeface(custom_font);
+//        loginLable = (EditText) findViewById(R.id.loginlable);
+//        loginLable.setClickable(false);
+//        loginLable.setEnabled(false);
+        tvLogin= (TextView) findViewById(R.id.tvLogin);
+       //Typeface custom_font = Typeface.createFromAsset(getAssets(),"fonts/Billabong.ttf");
+        //tvLogin.setTypeface(Typeface.createFromAsset(getAssets(),"fonts/Billabong.ttf"));
         final TextInputLayout input_layout_email = (TextInputLayout) findViewById(R.id.input_layout_email);
         input_layout_email.setHint("Username");
         //    Pass the intent to the registration page if not a user

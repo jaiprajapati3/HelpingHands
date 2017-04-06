@@ -70,7 +70,7 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
     JSONObject state, country;
     Spinner dropdown;
     private ArrayList<String> EmailListing;
-    ProgressBar progressBar,progressbarEmailCheck;
+    ProgressBar progressBar;
 
     EditText workexp_driver, cost_driver, workexp_meachanic, cost_mechanic, workexp_security, cost_security, workexp_maid, cost_maid;
     EditText workexp_contractor, cost_contractor;
@@ -94,7 +94,7 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
 
 
         setContentView(R.layout.activity_registration);
-        progressbarEmailCheck= (ProgressBar) findViewById(R.id.progressbarEmailCheck);
+     
         linearlayout1 = (LinearLayout) findViewById(R.id.linearlayout1);
         linearlayout2 = (LinearLayout) findViewById(R.id.linearlayout2);
         linearlayout3 = (LinearLayout) findViewById(R.id.linearlayout3);
@@ -518,50 +518,13 @@ Log.v("final1","Country");
 
                 } else {
 
+  
+                        final ProgressBar progressbarEmailCheck = (ProgressBar) findViewById(R.id.progressbarEmailCheck);
+                        progressbarEmailCheck.setVisibility(View.VISIBLE);
                     String email=MyApplication.getInstance().getPrefManager().getemail();
                     url_login=UrlString.url_string+"/Login.php?email="+email+"&type="+user_type;
                     int type=1;//1 for registration
-//                    JsonObjectRequest jsonObjectRequest=new JsonObjectRequest(Request.Method.GET, url_login, null, new Response.Listener<JSONObject>() {
-//                        @Override
-//                        public void onResponse(JSONObject response) {
-//                            try {
-//                                Log.v("test", String.valueOf(response));
-//                                boolean success=response.getBoolean("success");
-//                                if(success==true){
-//                                    String fname=response.getString("fname");
-//                                    String lname=response.getString("lname");
-//                                    String areaId=response.getString("areaId");
-//                                    String url_type=response.getString("user_type");
-//                                    String skillId=response.getString("skill_id");
-//                                    MyApplication.getInstance().getPrefManager().storearea(areaId);
-//                                    MyApplication.getInstance().getPrefManager().storefirstname(fname);
-//                                    MyApplication.getInstance().getPrefManager().storelastname(lname);
-//                                    MyApplication.getInstance().getPrefManager().storeuser_mode(url_type);
-//                                    MyApplication.getInstance().getPrefManager().storecheckbox(skillId);
-//                                    if(url_type.equals("User")){
-//                                        Log.v("test1","2");
-//                                        Intent urlHome=new Intent(getBaseContext(),Home.class);
-//                                        startActivity(urlHome);
-//                                    }
-//                                    if(url_type.equals("Service Provider")){
-//                                        Log.v("test1","3");
-//                                        Intent urlHome=new Intent(getBaseContext(),Service_feedback.class);
-//                                        startActivity(urlHome);
-//                                    }
-//
-//                                }
-//                            } catch (JSONException e) {
-//                                e.printStackTrace();
-//                            }
-//
-//                        }
-//                    }, new Response.ErrorListener() {
-//                        @Override
-//                        public void onErrorResponse(VolleyError error) {
-//                            Log.v("Error",error.getMessage());
-//                        }
-//                    });
-//                    MySingleton.getInstance(this).addToRequestque(jsonObjectRequest);
+//                  
                     JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url_login, null, new Response.Listener<JSONObject>() {
                         @Override
                         public void onResponse(JSONObject response) {
@@ -578,18 +541,18 @@ Log.v("final1","Country");
                                     MyApplication.getInstance().getPrefManager().storearea(areaId);
                                     MyApplication.getInstance().getPrefManager().storefirstname(fname);
                                     MyApplication.getInstance().getPrefManager().storelastname(lname);
-                               //     MyApplication.getInstance().getPrefManager().storeemail(email);
-
-//    MyApplication.getInstance().getPrefManager().storeuser_mode(url_type);
+                            
                                     MyApplication.getInstance().getPrefManager().storeuser_mode(user_type);
                                     Log.v("test1", user_type);
                                     if (user_type.equals("User")) {
+                                             progressbarEmailCheck.setVisibility(View.GONE);
                                         Log.v("test11", user_type);
                                         Intent urlHome = new Intent(getBaseContext(), Home.class);
                                         startActivity(urlHome);
                                         finish();
                                     }
                                     if (user_type.equalsIgnoreCase("Service Provider")) {
+                                             progressbarEmailCheck.setVisibility(View.GONE);
                                         Log.v("test11", user_type);
                                         String skillId = response.getString("skill_id");
                                         MyApplication.getInstance().getPrefManager().storecheckbox(skillId);
@@ -599,6 +562,7 @@ Log.v("final1","Country");
                                     }
                                 } else {
                                     //Login failed
+                                         progressbarEmailCheck.setVisibility(View.GONE);
                                     Toast.makeText(getApplicationContext(),"Login Failed",Toast.LENGTH_LONG).show();
                                 }
                             } catch (JSONException e) {
